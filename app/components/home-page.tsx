@@ -242,7 +242,7 @@ export function HomePage() {
         <h2 aria-label={text.carouselTitle} className="carousel-title" ref={carouselTitleRef}>
           {Array.from(text.carouselTitle).map((character, index) => (
             <span aria-hidden="true" className="carousel-title__character" key={`${character}-${index}`}>
-              {character === " " ? "\u00A0" : character}
+              {character}
             </span>
           ))}
         </h2>
