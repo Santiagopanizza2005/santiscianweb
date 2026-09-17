@@ -116,6 +116,13 @@ const clientLogos = ["1", "2", "3", "4", "5", "6"];
 
 function ProjectCarouselImage({ src }: { src: string }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const image = imageRef.current;
+
+    if (image?.complete && image.naturalWidth > 0) setIsLoaded(true);
+  }, []);
 
   return (
     <div className="project-carousel__image-frame">
@@ -126,6 +133,7 @@ function ProjectCarouselImage({ src }: { src: string }) {
         decoding="async"
         onError={() => setIsLoaded(false)}
         onLoad={() => setIsLoaded(true)}
+        ref={imageRef}
         src={src}
       />
     </div>
@@ -144,6 +152,7 @@ export function HomePage() {
   const restartVideoWithSound = (video: HTMLVideoElement) => {
     video.currentTime = 0;
     video.muted = false;
+    video.controls = true;
     setHasStartedVideoWithSound(true);
     void video.play().catch(() => {});
   };
@@ -214,10 +223,11 @@ export function HomePage() {
             aria-label={language === "es" ? "Presentación de Santi Scian" : "Santi Scian introduction"}
             autoPlay
             className="intro-video"
-            controls
             loop
             muted
-            onClick={(event) => restartVideoWithSound(event.currentTarget)}
+            onClick={(event) => {
+              if (!hasStartedVideoWithSound) restartVideoWithSound(event.currentTarget);
+            }}
             playsInline
             preload="none"
             ref={introVideoRef}
