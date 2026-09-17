@@ -114,6 +114,24 @@ const carousels = [
 
 const clientLogos = ["1", "2", "3", "4", "5", "6"];
 
+function ProjectCarouselImage({ src }: { src: string }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="project-carousel__image-frame">
+      {!isLoaded && <span aria-hidden="true" className="image-skeleton" />}
+      <img
+        alt=""
+        className={`project-carousel__image${isLoaded ? " project-carousel__image--loaded" : ""}`}
+        decoding="async"
+        onError={() => setIsLoaded(false)}
+        onLoad={() => setIsLoaded(true)}
+        src={src}
+      />
+    </div>
+  );
+}
+
 export function HomePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
   const [hasStartedVideoWithSound, setHasStartedVideoWithSound] = useState(false);
@@ -253,9 +271,7 @@ export function HomePage() {
                 {[0, 1, 2].map((groupIndex) => (
                   <div aria-hidden={groupIndex > 0} className="project-carousel__group" key={groupIndex}>
                     {images.map((image) => (
-                      <img
-                        alt=""
-                        className="project-carousel__image"
+                      <ProjectCarouselImage
                         key={image}
                         src={`/imagenes/${image}.webp${["mind", "mobi", "puff", "izr"].some((project) => image.toLowerCase().startsWith(project)) ? "?v=20260915-1416" : ""}`}
                       />

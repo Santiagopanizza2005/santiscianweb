@@ -360,19 +360,46 @@ body {
   animation-play-state: paused;
 }
 
+.project-carousel__image-frame {
+  flex: none;
+  height: clamp(8rem, 13vw, 13rem);
+  min-width: calc(clamp(8rem, 13vw, 13rem) * 0.46);
+  overflow: hidden;
+  position: relative;
+}
+
+.image-skeleton {
+  animation: image-skeleton-shimmer 1.4s ease-in-out infinite;
+  background: linear-gradient(100deg, #ececec 20%, #f8f8f8 40%, #ececec 60%);
+  background-size: 200% 100%;
+  inset: 0;
+  position: absolute;
+}
+
 .project-carousel__image {
   display: block;
   flex: none;
   height: clamp(8rem, 13vw, 13rem);
   object-fit: cover;
+  opacity: 0;
   position: relative;
-  transition: transform 180ms ease;
+  transition: opacity 180ms ease, transform 180ms ease;
   width: auto;
+}
+
+.project-carousel__image--loaded {
+  opacity: 1;
 }
 
 .project-carousel__image:hover {
   transform: scale(1.035);
   z-index: 1;
+}
+
+@keyframes image-skeleton-shimmer {
+  to {
+    background-position: -200% 0;
+  }
 }
 
 .history {
@@ -1077,6 +1104,11 @@ body {
     font-size: clamp(2.25rem, 11vw, 3.35rem);
     margin: 4rem 0 1.5rem;
     padding-inline: 1rem;
+  }
+
+  .project-carousel__image-frame {
+    height: clamp(7rem, 34vw, 9rem);
+    min-width: calc(clamp(7rem, 34vw, 9rem) * 0.46);
   }
 
   .project-carousel__image {
