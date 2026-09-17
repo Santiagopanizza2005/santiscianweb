@@ -1,0 +1,146 @@
+{"kind":"deck","id":"pr/bix5ii","name":"Deck"}
+{"kind":"layout","layoutId":"9ab678d2-7a35-4e39-88bf-404c2922d66f","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"d75ce3e2-9927-48c6-9436-11791424a414","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/vkpiwj","slide":1,"title":"FLUJO DE CAPTACIÓN","textShapes":8}
+{"kind":"shape","id":"sh/hs721sf2","slide":1,"bbox":[74,78,95,7]}
+{"kind":"textbox","id":"sh/upg36dwr","slide":1,"text":"FLUJO DE CAPTACIÓN","textPreview":"FLUJO DE CAPTACIÓN","textChars":18,"textLines":1,"bbox":[74,115,550,28]}
+{"kind":"textbox","id":"sh/vqpkzixc","slide":1,"text":"Brokers potenciales\na partir de interacciones","textPreview":"Brokers potenciales | a partir de interacciones","textChars":45,"textLines":2,"bbox":[74,170,710,160]}
+{"kind":"textbox","id":"sh/4vilcnet","slide":1,"text":"Un proceso automatizado para transformar los likes de un post en una base de contactos calificados.","textPreview":"Un proceso automatizado para transformar los likes de un post en una base de contactos calificados.","textChars":99,"textLines":1,"bbox":[78,355,620,70]}
+{"kind":"shape","id":"sh/5wrm5sfe","slide":1,"bbox":[822,133,310,310]}
+{"kind":"shape","id":"sh/itg3axwn","slide":1,"bbox":[873,286,194,14]}
+{"kind":"shape","id":"sh/ju9k3ix8","slide":1,"bbox":[861,278,30,30]}
+{"kind":"shape","id":"sh/tkrm9cfa","slide":1,"bbox":[970,278,30,30]}
+{"kind":"shape","id":"sh/gz65wr65","slide":1,"bbox":[1078,278,30,30]}
+{"kind":"textbox","id":"sh/vyxon6pk","slide":1,"text":"BD","textPreview":"BD","textChars":2,"textLines":1,"bbox":[1085,284,18,20]}
+{"kind":"textbox","id":"sh/uxonu1oz","slide":1,"text":"POST","textPreview":"POST","textChars":4,"textLines":1,"bbox":[841,335,67,20]}
+{"kind":"textbox","id":"sh/54z6tg7m","slide":1,"text":"PROCESO","textPreview":"PROCESO","textChars":7,"textLines":1,"bbox":[944,335,82,20]}
+{"kind":"textbox","id":"sh/43q5kb61","slide":1,"text":"BASE","textPreview":"BASE","textChars":4,"textLines":1,"bbox":[1062,335,62,20]}
+{"kind":"textbox","id":"sh/32hor6pg","slide":1,"text":"Propuesta de solución","textPreview":"Propuesta de solución","textChars":21,"textLines":1,"bbox":[74,635,450,24]}
+{"kind":"image","id":"im/h8zi90jm","slide":1,"name":"","alt":"Instagram","bbox":[866,283,20,20]}
+{"kind":"image","id":"im/a1wfm5gr","slide":1,"name":"","alt":"Apify","bbox":[975,283,20,20]}
+{"kind":"notes","id":"nt/vkpiwj","slide":1,"text":"Introducción: presentar el objetivo del flujo y el resultado final para el cliente.\n\n[Sources]\nWorkflow and cost assumptions: user-provided brief (2026-08-28).\nLogos: Apify (https://apify.com/img/apify-logo/logomark-32x32.svg); Instagram (https://cdn.simpleicons.org/instagram); Google Sheets (https://cdn.simpleicons.org/googlesheets); Microsoft Excel (https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2019%E2%80%932025).svg)"}
+{"kind":"slide","id":"sl/xmv7fi","slide":2,"title":"OBJETIVO","textShapes":14}
+{"kind":"textbox","id":"sh/94n69gfe","slide":2,"text":"OBJETIVO","textPreview":"OBJETIVO","textChars":8,"textLines":1,"bbox":[74,53,520,24]}
+{"kind":"textbox","id":"sh/m1wnelw3","slide":2,"text":"Del engagement a una base de brokers contactables","textPreview":"Del engagement a una base de brokers contactables","textChars":49,"textLines":1,"bbox":[74,88,1035,55]}
+{"kind":"textbox","id":"sh/n25o7qx8","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1155,55,50,28]}
+{"kind":"shape","id":"sh/wrypkve5","slide":2,"bbox":[74,158,1132,2]}
+{"kind":"textbox","id":"sh/xs76d0vq","slide":2,"text":"El sistema prioriza perfiles relevantes, los clasifica y deja el resultado listo para trabajar comercialmente.","textPreview":"El sistema prioriza perfiles relevantes, los clasifica y deja el resultado listo para trabajar comercialmente.","textChars":110,"textLines":1,"bbox":[74,194,710,55]}
+{"kind":"shape","id":"sh/a5wnilwz","slide":2,"bbox":[190,398,810,14]}
+{"kind":"shape","id":"sh/vqpobqdk","slide":2,"bbox":[150,365,80,80]}
+{"kind":"textbox","id":"sh/cvu58rel","slide":2,"text":"Interacciones","textPreview":"Interacciones","textChars":13,"textLines":1,"bbox":[110,466,160,28]}
+{"kind":"shape","id":"sh/dw361wf6","slide":2,"bbox":[370,365,80,80]}
+{"kind":"textbox","id":"sh/9ovixkjq","slide":2,"text":"Perfiles","textPreview":"Perfiles","textChars":8,"textLines":1,"bbox":[330,466,160,28]}
+{"kind":"shape","id":"sh/83m14f25","slide":2,"bbox":[590,365,80,80]}
+{"kind":"textbox","id":"sh/72d0vu1k","slide":2,"text":"Brokers","textPreview":"Brokers","textChars":7,"textLines":1,"bbox":[550,466,160,28]}
+{"kind":"shape","id":"sh/m14j2pkz","slide":2,"bbox":[810,365,80,80]}
+{"kind":"textbox","id":"sh/hsvi14jm","slide":2,"text":"Emails","textPreview":"Emails","textChars":6,"textLines":1,"bbox":[770,466,160,28]}
+{"kind":"shape","id":"sh/wrm18z21","slide":2,"bbox":[1030,365,80,80]}
+{"kind":"textbox","id":"sh/vqd0zu1g","slide":2,"text":"Base final","textPreview":"Base final","textChars":10,"textLines":1,"bbox":[990,466,160,28]}
+{"kind":"textbox","id":"sh/5wf254jy","slide":2,"text":"Perfil","textPreview":"Perfil","textChars":6,"textLines":1,"bbox":[390,389,41,25]}
+{"kind":"textbox","id":"sh/4v61cz2d","slide":2,"text":"B","textPreview":"B","textChars":1,"textLines":1,"bbox":[610,385,40,32]}
+{"kind":"textbox","id":"sh/obyto7el","slide":2,"text":"@","textPreview":"@","textChars":1,"textLines":1,"bbox":[830,384,40,32]}
+{"kind":"textbox","id":"sh/pc7uxcv6","slide":2,"text":"BD","textPreview":"BD","textChars":2,"textLines":1,"bbox":[1048,389,42,25]}
+{"kind":"textbox","id":"sh/29wbmxwf","slide":2,"text":"Resultado: contactos seleccionados, ordenados y exportables.","textPreview":"Resultado: contactos seleccionados, ordenados y exportables.","textChars":60,"textLines":1,"bbox":[74,624,740,32]}
+{"kind":"image","id":"im/1cfa9c3a","slide":2,"name":"","alt":"Instagram","bbox":[172,387,36,36]}
+{"kind":"notes","id":"nt/xmv7fi","slide":2,"text":"El valor no está en recolectar likes, sino en convertirlos en contactos de brokers que pueden ser utilizados por el equipo comercial.\n\n[Sources]\nWorkflow and cost assumptions: user-provided brief (2026-08-28).\nLogos: Apify (https://apify.com/img/apify-logo/logomark-32x32.svg); Instagram (https://cdn.simpleicons.org/instagram); Google Sheets (https://cdn.simpleicons.org/googlesheets); Microsoft Excel (https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2019%E2%80%932025).svg)"}
+{"kind":"slide","id":"sl/6icguo","slide":3,"title":"FLUJO PRINCIPAL","textShapes":18}
+{"kind":"textbox","id":"sh/3ix87q9k","slide":3,"text":"FLUJO PRINCIPAL","textPreview":"FLUJO PRINCIPAL","textChars":15,"textLines":1,"bbox":[74,53,520,24]}
+{"kind":"textbox","id":"sh/4j69gvqp","slide":3,"text":"Cinco etapas simples y trazables","textPreview":"Cinco etapas simples y trazables","textChars":32,"textLines":1,"bbox":[74,88,1035,55]}
+{"kind":"textbox","id":"sh/5kfq90ra","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1155,55,50,28]}
+{"kind":"shape","id":"sh/qloril8v","slide":3,"bbox":[74,158,1132,2]}
+{"kind":"shape","id":"sh/rmh8bq9g","slide":3,"bbox":[264,348,21,14]}
+{"kind":"shape","id":"sh/snq9kvq1","slide":3,"bbox":[493,348,21,14]}
+{"kind":"shape","id":"sh/dozqd0rm","slide":3,"bbox":[722,348,21,14]}
+{"kind":"shape","id":"sh/6p47618r","slide":3,"bbox":[951,348,21,14]}
+{"kind":"shape","id":"sh/7qd8z69c","slide":3,"bbox":[74,245,198,260]}
+{"kind":"textbox","id":"sh/3i50z2dg","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[92,268,42,22]}
+{"kind":"shape","id":"sh/2hwj6xcv","slide":3,"bbox":[92,305,42,4]}
+{"kind":"textbox","id":"sh/pkn21cv6","slide":3,"text":"URL del post","textPreview":"URL del post","textChars":12,"textLines":1,"bbox":[92,330,162,55]}
+{"kind":"textbox","id":"sh/oje187ul","slide":3,"text":"Se ingresa el link del post a analizar.","textPreview":"Se ingresa el link del post a analizar.","textChars":39,"textLines":1,"bbox":[92,401,162,80]}
+{"kind":"shape","id":"sh/fe50v2d4","slide":3,"bbox":[303,245,198,260]}
+{"kind":"textbox","id":"sh/edwj2xcj","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[321,268,42,22]}
+{"kind":"shape","id":"sh/1gnixsva","slide":3,"bbox":[321,305,42,4]}
+{"kind":"textbox","id":"sh/gfe14nup","slide":3,"text":"Likes","textPreview":"Likes","textChars":5,"textLines":1,"bbox":[321,330,162,55]}
+{"kind":"textbox","id":"sh/rql0rid8","slide":3,"text":"Apify obtiene los perfiles que interactuaron.","textPreview":"Apify obtiene los perfiles que interactuaron.","textChars":45,"textLines":1,"bbox":[321,401,162,80]}
+{"kind":"shape","id":"sh/6pcjydwn","slide":3,"bbox":[532,245,198,260]}
+{"kind":"textbox","id":"sh/ulsjadgf","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[550,268,42,22]}
+{"kind":"shape","id":"sh/vmlk3ix0","slide":3,"bbox":[550,305,42,4]}
+{"kind":"textbox","id":"sh/wnu1cnyl","slide":3,"text":"Filtro broker","textPreview":"Filtro broker","textChars":13,"textLines":1,"bbox":[550,330,162,55]}
+{"kind":"textbox","id":"sh/ho325sf6","slide":3,"text":"IA clasifica si el perfil corresponde a un broker.","textPreview":"IA clasifica si el perfil corresponde a un broker.","textChars":50,"textLines":1,"bbox":[550,401,162,80]}
+{"kind":"shape","id":"sh/i9cjedgr","slide":3,"bbox":[761,245,198,260]}
+{"kind":"textbox","id":"sh/jalk7ixw","slide":3,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[779,268,42,22]}
+{"kind":"shape","id":"sh/4bulgnyh","slide":3,"bbox":[779,305,42,4]}
+{"kind":"textbox","id":"sh/5c329sf2","slide":3,"text":"Búsqueda de email","textPreview":"Búsqueda de email","textChars":17,"textLines":1,"bbox":[779,330,162,55]}
+{"kind":"textbox","id":"sh/6dw3ixgn","slide":3,"text":"Se analiza bio, cuenta, web y contacto.","textPreview":"Se analiza bio, cuenta, web y contacto.","textChars":39,"textLines":1,"bbox":[779,401,162,80]}
+{"kind":"shape","id":"sh/re5kb2x8","slide":3,"bbox":[990,245,198,260]}
+{"kind":"textbox","id":"sh/187mhwza","slide":3,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1008,268,42,22]}
+{"kind":"shape","id":"sh/g7y58rip","slide":3,"bbox":[1008,305,42,4]}
+{"kind":"textbox","id":"sh/f6p4fmh4","slide":3,"text":"Base exportable","textPreview":"Base exportable","textChars":15,"textLines":1,"bbox":[1008,330,162,55]}
+{"kind":"textbox","id":"sh/e5gn6h0z","slide":3,"text":"Los brokers con email quedan disponibles para exportar.","textPreview":"Los brokers con email quedan disponibles para exportar.","textChars":55,"textLines":1,"bbox":[1008,401,162,80]}
+{"kind":"notes","id":"nt/6icguo","slide":3,"text":"Vista resumida del proceso completo. Cada etapa deja una clasificación clara antes de pasar a la siguiente.\n\n[Sources]\nWorkflow and cost assumptions: user-provided brief (2026-08-28).\nLogos: Apify (https://apify.com/img/apify-logo/logomark-32x32.svg); Instagram (https://cdn.simpleicons.org/instagram); Google Sheets (https://cdn.simpleicons.org/googlesheets); Microsoft Excel (https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2019%E2%80%932025).svg)"}
+{"kind":"slide","id":"sl/5c2lc6","slide":4,"title":"CALIFICACIÓN","textShapes":13}
+{"kind":"textbox","id":"sh/ny1cnml4","slide":4,"text":"CALIFICACIÓN","textPreview":"CALIFICACIÓN","textChars":12,"textLines":1,"bbox":[74,53,520,24]}
+{"kind":"textbox","id":"sh/ozutw7mp","slide":4,"text":"Cada perfil recibe una clasificación útil","textPreview":"Cada perfil recibe una clasificación útil","textChars":41,"textLines":1,"bbox":[74,88,1035,55]}
+{"kind":"textbox","id":"sh/p03upc3u","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1155,55,50,28]}
+{"kind":"shape","id":"sh/a1cbyh4f","slide":4,"bbox":[74,158,1132,2]}
+{"kind":"textbox","id":"sh/b2lcrml0","slide":4,"text":"Primero se determina si el perfil es un broker. Solo los perfiles relevantes continúan al análisis de contacto.","textPreview":"Primero se determina si el perfil es un broker. Solo los perfiles relevantes continúan al análisis de contacto.","textChars":111,"textLines":1,"bbox":[74,195,650,58]}
+{"kind":"shape","id":"sh/c3ut0rml","slide":4,"bbox":[210,320,240,140]}
+{"kind":"shape","id":"sh/x43utw36","slide":4,"bbox":[565,320,205,140]}
+{"kind":"shape","id":"sh/y5cb214r","slide":4,"bbox":[910,205,245,140]}
+{"kind":"shape","id":"sh/z65cv6lc","slide":4,"bbox":[910,445,245,140]}
+{"kind":"shape","id":"sh/byh0jyl0","slide":4,"bbox":[573,508,190,65]}
+{"kind":"shape","id":"sh/qx8zqt4f","slide":4,"bbox":[0,0,0,0]}
+{"kind":"shape","id":"sh/dkzil836","slide":4,"bbox":[0,0,0,0]}
+{"kind":"shape","id":"sh/czqhs3ml","slide":4,"bbox":[0,0,0,0]}
+{"kind":"shape","id":"sh/3uh0fylo","slide":4,"bbox":[0,0,0,0]}
+{"kind":"textbox","id":"sh/2tozmt4j","slide":4,"text":"Perfil","textPreview":"Perfil","textChars":6,"textLines":1,"bbox":[236,348,174,30]}
+{"kind":"textbox","id":"sh/pwziho3u","slide":4,"text":"analizado","textPreview":"analizado","textChars":9,"textLines":1,"bbox":[236,383,174,25]}
+{"kind":"textbox","id":"sh/4vqhojm9","slide":4,"text":"¿Es broker?","textPreview":"¿Es broker?","textChars":11,"textLines":1,"bbox":[585,360,165,30]}
+{"kind":"textbox","id":"sh/nq10ril8","slide":4,"text":"Broker con mail","textPreview":"Broker con mail","textChars":15,"textLines":1,"bbox":[934,237,197,32]}
+{"kind":"textbox","id":"sh/mpsjyd4n","slide":4,"text":"Pasa a la base exportable","textPreview":"Pasa a la base exportable","textChars":25,"textLines":1,"bbox":[934,278,197,28]}
+{"kind":"textbox","id":"sh/ilw3qhov","slide":4,"text":"Broker sin mail","textPreview":"Broker sin mail","textChars":15,"textLines":1,"bbox":[934,477,197,32]}
+{"kind":"textbox","id":"sh/jm5kjm5g","slide":4,"text":"Queda clasificado para seguimiento","textPreview":"Queda clasificado para seguimiento","textChars":34,"textLines":1,"bbox":[934,518,197,28]}
+{"kind":"textbox","id":"sh/knelsr61","slide":4,"text":"No es broker","textPreview":"No es broker","textChars":12,"textLines":1,"bbox":[588,519,160,22]}
+{"kind":"textbox","id":"sh/5on2lwnm","slide":4,"text":"Se descarta","textPreview":"Se descarta","textChars":11,"textLines":1,"bbox":[588,544,160,18]}
+{"kind":"notes","id":"nt/5c2lc6","slide":4,"text":"Reglas de clasificación propuestas: no broker se descarta; broker con mail se exporta; broker sin mail se conserva identificado para un posible seguimiento posterior.\n\n[Sources]\nWorkflow and cost assumptions: user-provided brief (2026-08-28).\nLogos: Apify (https://apify.com/img/apify-logo/logomark-32x32.svg); Instagram (https://cdn.simpleicons.org/instagram); Google Sheets (https://cdn.simpleicons.org/googlesheets); Microsoft Excel (https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2019%E2%80%932025).svg)"}
+{"kind":"slide","id":"sl/yj3un5","slide":5,"title":"ENTREGA","textShapes":15}
+{"kind":"textbox","id":"sh/wzupo7el","slide":5,"text":"ENTREGA","textPreview":"ENTREGA","textChars":7,"textLines":1,"bbox":[74,53,520,24]}
+{"kind":"textbox","id":"sh/bylof2x0","slide":5,"text":"Una base lista para integrar y exportar","textPreview":"Una base lista para integrar y exportar","textChars":39,"textLines":1,"bbox":[74,88,1035,55]}
+{"kind":"textbox","id":"sh/axc7mxwf","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1155,55,50,28]}
+{"kind":"shape","id":"sh/9w36dcfu","slide":5,"bbox":[74,158,1132,2]}
+{"kind":"textbox","id":"sh/ovupk7e9","slide":5,"text":"Los perfiles que cumplen la condición de broker y tienen email se almacenan en la base de datos del sistema IVR.","textPreview":"Los perfiles que cumplen la condición de broker y tienen email se almacenan en la base de datos del sistema IVR.","textChars":112,"textLines":1,"bbox":[74,198,750,55]}
+{"kind":"shape","id":"sh/nu1ob2xo","slide":5,"bbox":[74,290,560,236]}
+{"kind":"textbox","id":"sh/mts7ixw3","slide":5,"text":"Base de datos","textPreview":"Base de datos","textChars":13,"textLines":1,"bbox":[112,327,260,31]}
+{"kind":"shape","id":"sh/tsnqpwvy","slide":5,"bbox":[112,374,63,4]}
+{"kind":"shape","id":"sh/8repwred","slide":5,"bbox":[115,408,10,10]}
+{"kind":"textbox","id":"sh/idsnyh83","slide":5,"text":"Nombre / usuario","textPreview":"Nombre / usuario","textChars":16,"textLines":1,"bbox":[139,398,330,23]}
+{"kind":"shape","id":"sh/je14rm9o","slide":5,"bbox":[115,435,10,10]}
+{"kind":"textbox","id":"sh/kfa50rq9","slide":5,"text":"Perfil","textPreview":"Perfil","textChars":6,"textLines":1,"bbox":[139,425,330,23]}
+{"kind":"shape","id":"sh/5gj6tw7u","slide":5,"bbox":[115,462,10,10]}
+{"kind":"textbox","id":"sh/ap8nuh87","slide":5,"text":"Email","textPreview":"Email","textChars":5,"textLines":1,"bbox":[139,452,330,23]}
+{"kind":"shape","id":"sh/vqh4nm9s","slide":5,"bbox":[115,489,10,10]}
+{"kind":"textbox","id":"sh/wbq5w7qd","slide":5,"text":"Estado de calificación","textPreview":"Estado de calificación","textChars":22,"textLines":1,"bbox":[139,479,330,23]}
+{"kind":"shape","id":"sh/xczmpcri","slide":5,"bbox":[666,400,121,14]}
+{"kind":"shape","id":"sh/ulcn618b","slide":5,"bbox":[802,290,372,236]}
+{"kind":"textbox","id":"sh/fmloz6pw","slide":5,"text":"Formatos de entrega","textPreview":"Formatos de entrega","textChars":19,"textLines":1,"bbox":[839,327,270,31]}
+{"kind":"textbox","id":"sh/dsv2t87e","slide":5,"text":"CSV","textPreview":"CSV","textChars":3,"textLines":1,"bbox":[1096,408,55,26]}
+{"kind":"textbox","id":"sh/crm1036t","slide":5,"text":"Excel","textPreview":"Excel","textChars":5,"textLines":1,"bbox":[842,464,55,24]}
+{"kind":"textbox","id":"sh/zuxkvipk","slide":5,"text":"Google Sheets","textPreview":"Google Sheets","textChars":13,"textLines":1,"bbox":[952,464,105,24]}
+{"kind":"textbox","id":"sh/yto32doz","slide":5,"text":"CSV","textPreview":"CSV","textChars":3,"textLines":1,"bbox":[1095,464,55,24]}
+{"kind":"textbox","id":"sh/lwf2x87a","slide":5,"text":"Base centralizada, reutilizable y preparada para el equipo comercial.","textPreview":"Base centralizada, reutilizable y preparada para el equipo comercial.","textChars":69,"textLines":1,"bbox":[74,612,810,28]}
+{"kind":"image","id":"im/8nups7ql","slide":5,"name":"","alt":"Microsoft Excel","bbox":[845,394,49,49]}
+{"kind":"image","id":"im/9836ls76","slide":5,"name":"","alt":"Google Sheets","bbox":[981,394,49,49]}
+{"kind":"notes","id":"nt/yj3un5","slide":5,"text":"La misma base de datos del sistema IVR puede centralizar la información. Se entregan los brokers con email en formatos Excel, CSV y Google Sheets.\n\n[Sources]\nWorkflow and cost assumptions: user-provided brief (2026-08-28).\nLogos: Apify (https://apify.com/img/apify-logo/logomark-32x32.svg); Instagram (https://cdn.simpleicons.org/instagram); Google Sheets (https://cdn.simpleicons.org/googlesheets); Microsoft Excel (https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2019%E2%80%932025).svg)"}
+{"kind":"slide","id":"sl/d5yuoy","slide":6,"title":"Implementación segura y costo eficiente","textShapes":6}
+{"kind":"textbox","id":"sh/p03290vq","slide":6,"text":"Implementación segura y costo eficiente","textPreview":"Implementación segura y costo eficiente","textChars":39,"textLines":1,"bbox":[74,82,940,54]}
+{"kind":"shape","id":"sh/2xcje5wf","slide":6,"bbox":[74,155,78,6]}
+{"kind":"shape","id":"sh/3ylk7qdk","slide":6,"bbox":[74,225,515,270]}
+{"kind":"textbox","id":"sh/1w3250vu","slide":6,"text":"Sin login en la cuenta","textPreview":"Sin login en la cuenta","textChars":22,"textLines":1,"bbox":[177,268,310,33]}
+{"kind":"textbox","id":"sh/etsjalw3","slide":6,"text":"Apify permite realizar la extracción sin utilizar una cuenta propia para scrapear, reduciendo el riesgo operativo sobre la cuenta.","textPreview":"Apify permite realizar la extracción sin utilizar una cuenta propia para scrapear, reduciendo el riesgo operativo sobre la cuenta.","textChars":130,"textLines":1,"bbox":[112,333,405,90]}
+{"kind":"shape","id":"sh/fulk3qdo","slide":6,"bbox":[664,225,542,270]}
+{"kind":"textbox","id":"sh/krel8fud","slide":6,"text":"Costos previstos","textPreview":"Costos previstos","textChars":16,"textLines":1,"bbox":[704,268,300,33]}
+{"kind":"shape","id":"sh/lsn2hkvy","slide":6,"bbox":[704,318,62,4]}
+{"kind":"textbox","id":"sh/54balsre","slide":6,"text":"• Uso de Apify\n• Tokens de IA para clasificación\n• Servidor y base de datos existentes del IVR","textPreview":"• Uso de Apify | • Tokens de IA para clasificación | • Servidor y base de datos existentes del IVR","textChars":94,"textLines":3,"bbox":[704,350,415,110]}
+{"kind":"textbox","id":"sh/4329snqt","slide":6,"text":"Próximo paso: definir el post de prueba y validar los criterios de “broker”.","textPreview":"Próximo paso: definir el post de prueba y validar los criterios de “broker”.","textChars":76,"textLines":1,"bbox":[74,585,990,32]}
+{"kind":"image","id":"im/poba5c3a","slide":6,"name":"","alt":"Apify","bbox":[112,271,45,45]}
+{"kind":"notes","id":"nt/d5yuoy","slide":6,"text":"Punto de tranquilidad para el cliente: no se realiza scraping con login de una cuenta propia. Los costos se concentran en Apify y en un uso acotado de IA; se aprovecha la infraestructura IVR existente.\n\n[Sources]\nWorkflow and cost assumptions: user-provided brief (2026-08-28).\nLogos: Apify (https://apify.com/img/apify-logo/logomark-32x32.svg); Instagram (https://cdn.simpleicons.org/instagram); Google Sheets (https://cdn.simpleicons.org/googlesheets); Microsoft Excel (https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2019%E2%80%932025).svg)"}
