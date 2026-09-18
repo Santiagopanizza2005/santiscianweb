@@ -143,6 +143,7 @@ function ProjectCarouselImage({ src }: { src: string }) {
 export function HomePage() {
   const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null);
   const [hasStartedVideoWithSound, setHasStartedVideoWithSound] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const language = selectedLanguage ?? "es";
   const text = copy[language];
   const carouselTitleRef = useRef<HTMLHeadingElement>(null);
@@ -160,6 +161,12 @@ export function HomePage() {
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setIsVideoReady(true));
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   useEffect(() => {
     const title = carouselTitleRef.current;
@@ -219,32 +226,36 @@ export function HomePage() {
         </h1>
         <p>{text.description}</p>
         <div className="intro-video-frame">
-          <video
-            aria-label={language === "es" ? "Presentación de Santi Scian" : "Santi Scian introduction"}
-            autoPlay
-            className="intro-video"
-            loop
-            muted
-            onClick={(event) => {
-              if (!hasStartedVideoWithSound) restartVideoWithSound(event.currentTarget);
-            }}
-            playsInline
-            preload="none"
-            ref={introVideoRef}
-          >
-            <source src="/santiscian.web.mp4" type="video/mp4" />
-          </video>
-          {!hasStartedVideoWithSound && (
-            <button
-              aria-label={language === "es" ? "Reproducir con sonido desde el inicio" : "Play with sound from the beginning"}
-              className="intro-video__play"
-              onClick={() => {
-                if (introVideoRef.current) restartVideoWithSound(introVideoRef.current);
-              }}
-              type="button"
-            >
-              <span aria-hidden="true">▶</span>
-            </button>
+          {isVideoReady && (
+            <>
+              <video
+                aria-label={language === "es" ? "Presentación de Santi Scian" : "Santi Scian introduction"}
+                autoPlay
+                className="intro-video"
+                loop
+                muted
+                onClick={(event) => {
+                  if (!hasStartedVideoWithSound) restartVideoWithSound(event.currentTarget);
+                }}
+                playsInline
+                preload="none"
+                ref={introVideoRef}
+              >
+                <source src="/santiscian.web.mp4" type="video/mp4" />
+              </video>
+              {!hasStartedVideoWithSound && (
+                <button
+                  aria-label={language === "es" ? "Reproducir con sonido desde el inicio" : "Play with sound from the beginning"}
+                  className="intro-video__play"
+                  onClick={() => {
+                    if (introVideoRef.current) restartVideoWithSound(introVideoRef.current);
+                  }}
+                  type="button"
+                >
+                  <span aria-hidden="true">▶</span>
+                </button>
+              )}
+            </>
           )}
         </div>
         <Link className="primary-cta" href={`/contact?lang=${language}`}>

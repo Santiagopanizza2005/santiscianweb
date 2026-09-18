@@ -381,7 +381,7 @@ body {
   flex: none;
   height: clamp(8rem, 13vw, 13rem);
   object-fit: cover;
-  opacity: 0;
+  opacity: 1;
   position: relative;
   transition: opacity 180ms ease, transform 180ms ease;
   width: auto;
@@ -990,9 +990,15 @@ body {
 }
 
 @media (max-width: 600px) {
+  html,
+  body {
+    background: #fff;
+  }
+
   .home-page {
     border-radius: 0 0 1.5rem 1.5rem;
     margin-bottom: 34rem;
+    padding-top: env(safe-area-inset-top);
   }
 
   .site-footer {
