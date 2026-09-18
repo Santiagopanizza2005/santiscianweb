@@ -6,6 +6,7 @@
 
 html,
 body {
+  background: #0b0b0c;
   min-height: 100%;
   overflow-x: clip;
   scroll-behavior: smooth;
@@ -990,14 +991,15 @@ body {
 }
 
 @media (max-width: 600px) {
-  html,
   body {
-    background: #fff;
+    background: #0b0b0c;
   }
 
   .home-page {
     border-radius: 0 0 1.5rem 1.5rem;
+    clip-path: inset(0 round 0 0 1.5rem 1.5rem);
     margin-bottom: 34rem;
+    overflow: clip;
     padding-top: env(safe-area-inset-top);
   }
 
