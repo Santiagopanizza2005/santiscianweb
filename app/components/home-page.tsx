@@ -7,9 +7,9 @@ import { LanguageSwitcher, type Language } from "./language-switcher";
 
 const copy = {
   es: {
-    title: ["Desarrollo software", "a medida para empresas."],
+    title: ["Tu próximo empleado", "no será un humano."],
     description:
-      "Creo herramientas web simples para automatizar tareas, ordenar procesos y resolver problemas específicos de tu negocio.",
+      "Desarrollo software a medida, agentes de inteligencia artificial y automatizaciones para que tu empresa trabaje mejor.",
     cta: "Hablemos de tu proyecto",
     trustpilotRating: "4.8 · Excelente",
     trustpilotLink: "Ver en Trustpilot ↗",
