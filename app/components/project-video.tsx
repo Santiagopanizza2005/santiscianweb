@@ -9,7 +9,7 @@ const projectLinks: Record<string, { website: string; project?: string }> = {
   "/ecohabit-video.mp4": { website: "https://mindpraxis.net/", project: "https://mindpraxis.net/soluciones#ecohabit" },
   "/izr-ivr-video.mp4": { website: "https://www.izr.com.ar/" },
   "/mobi-video.mp4": { website: "https://mobihunter.io/" },
-  "/appmobi-video.mp4": { website: "https://mobihunter.io/", project: "https://app.mobihunter.io/" },
+  "/mobicelular-video.mp4": { website: "https://mobihunter.io/", project: "https://app.mobihunter.io/" },
 };
 
 export function ProjectVideo({ name, src, subtitle, language = "es" }: { name: string; src: string; subtitle: string; language?: Language }) {
@@ -61,6 +61,7 @@ export function ProjectVideo({ name, src, subtitle, language = "es" }: { name: s
         <video
           aria-label={name}
           className="project-video-page__video"
+          key={src}
           autoPlay
           loop={!playingWithSound}
           muted={!playingWithSound}
@@ -77,8 +78,10 @@ export function ProjectVideo({ name, src, subtitle, language = "es" }: { name: s
           ref={videoRef}
           playsInline
           preload="metadata"
-          src={src}
-        />
+          poster={src.replace(/\.mp4$/, "-poster.webp")}
+        >
+          <source src={src.replace(/\.mp4$/, ".webm")} type="video/webm" />
+        </video>
         {!playingWithSound && (
           <button aria-label={`Reproducir ${name} desde el inicio con sonido`} className="intro-video__play" onClick={restartWithSound} type="button">
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

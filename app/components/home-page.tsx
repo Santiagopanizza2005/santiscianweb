@@ -114,8 +114,10 @@ export function HomePage() {
             ref={videoRef}
             playsInline
             preload="metadata"
-            src="/1002.mp4"
-          />
+            poster="/santiscianvideo-poster.webp"
+          >
+            <source src="/santiscianvideo.webm" type="video/webm" />
+          </video>
           {!isVideoPlayingWithSound && (
             <button
               aria-label={language === "es" ? "Reproducir con sonido" : "Play with sound"}

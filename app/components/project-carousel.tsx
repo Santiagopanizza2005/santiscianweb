@@ -40,7 +40,7 @@ const projects: { name: string; slug: string; src: string; title?: Record<Langua
   {
     name: "Mobihunter App",
     slug: "mobihunter-app",
-    src: "/appmobi-video.mp4",
+    src: "/mobicelular-video.mp4",
     title: { es: "Una aventura en tu celular.", en: "An adventure on your phone." },
     description: {
       es: "Desarrollé la app de Mobihunter para que los jugadores puedan elegir sus juegos, resolver preguntas y completar desafíos desde el celular. La experiencia reúne el progreso de cada partida, los resultados y el ranking en un solo lugar, conectado con el panel de administración.",
@@ -244,7 +244,8 @@ export function ProjectCarousel({ language }: { language: Language }) {
                 aria-label={project.name}
                 muted
                 playsInline
-                preload={isVisible && (index === slide || index === (slide + 1) % projects.length) ? "auto" : "metadata"}
+                poster={project.src.replace(/\.mp4$/, "-poster.webp")}
+                preload="auto"
                 ref={(video) => { videos.current[index] = video; }}
                 onLoadedMetadata={(event) => {
                   updatePlayback(index, event.currentTarget);
@@ -257,8 +258,9 @@ export function ProjectCarousel({ language }: { language: Language }) {
                   if (index === slide && video.currentTime >= PREVIEW_SECONDS) advancePreview(index);
                 }}
                 onEnded={() => advancePreview(index)}
-                src={project.src}
-              />
+              >
+                <source src={project.src.replace(/\.mp4$/, "-preview.webm")} type="video/webm" />
+              </video>
               <span className="project-carousel__name">{project.name}</span>
               {project.title && project.description && (
                 <div className="project-carousel__caption">

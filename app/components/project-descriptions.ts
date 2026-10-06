@@ -31,7 +31,7 @@ export const projectDescriptions: Record<string, Record<Language, string[]>> = {
       "It also provides **game metrics, revenue and abandonment rates**. This information helps the team track game performance and identify where to improve the player experience.",
     ],
   },
-  "/appmobi-video.mp4": {
+  "/mobicelular-video.mp4": {
     es: [
       "Desarrollé la app de Mobihunter para que los jugadores puedan elegir sus juegos, **resolver preguntas y completar desafíos desde el celular**. La experiencia reúne **el progreso de cada partida, los resultados y el ranking** en un solo lugar.",
       "La app está conectada con el **panel de administración**, vinculando la experiencia del jugador con la gestión de los juegos. Así, los jugadores tienen un lugar para participar y seguir sus resultados, mientras el equipo administra el contenido desde su panel.",

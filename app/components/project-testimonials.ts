@@ -26,7 +26,7 @@ export const projectTestimonials: Record<string, { name: string; role: string; t
       en: "Santi brought Mobihunter’s management tools together in a clear, practical dashboard. He organized our ideas into a tool that makes it easier to manage games, organize content and understand what happens in each session.",
     },
   },
-  "/appmobi-video.mp4": {
+  "/mobicelular-video.mp4": {
     name: "Mauri",
     role: "Co-founder @Mindpraxis",
     text: {

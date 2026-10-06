@@ -9,7 +9,7 @@ export default async function ProjectPage({ searchParams }: { searchParams: Prom
   const subtitle = lang === "en" ? "An adventure on your phone." : "Una aventura en tu celular.";
   return (
     <>
-      <ProjectVideo language={lang === "en" ? "en" : "es"} subtitle={subtitle} name="Mobihunter App" src="/appmobi-video.mp4" />
+      <ProjectVideo language={lang === "en" ? "en" : "es"} subtitle={subtitle} name="Mobihunter App" src="/mobicelular-video.mp4" />
       <ProjectStory project="mobihunter-app" language={lang === "en" ? "en" : "es"} />
     </>
   );

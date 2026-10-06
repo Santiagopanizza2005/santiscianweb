@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: "Santi Scian",
   },
   title: "Santi Scian",
