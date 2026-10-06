@@ -1,4 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
+import { validateContact } from "../../../lib/contact-validation";
+import { contactServices, isContactService } from "../../../lib/contact-services";
 
 export const runtime = "nodejs";
 
@@ -14,10 +16,6 @@ type Budget = (typeof BUDGETS)[number];
 
 function isNonEmptyString(value: unknown, maxLength: number): value is string {
   return typeof value === "string" && value.trim().length > 0 && value.trim().length <= maxLength;
-}
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function isContactMethod(value: unknown): value is ContactMethod {
@@ -47,7 +45,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Datos inválidos." }, { status: 400 });
   }
 
-  const { name, company, budget, contactMethod, contact, message, website } = body;
+  const { name, company, service, budget, contactMethod, contact, message, website } = body;
 
   if (website) {
     return Response.json({ ok: true });
@@ -56,6 +54,7 @@ export async function POST(request: Request) {
   if (
     !isNonEmptyString(name, MAX_NAME_LENGTH) ||
     !isNonEmptyString(company, MAX_COMPANY_LENGTH) ||
+    !isContactService(service) ||
     !isBudget(budget) ||
     !isContactMethod(contactMethod) ||
     !isNonEmptyString(contact, MAX_CONTACT_LENGTH) ||
@@ -66,8 +65,11 @@ export async function POST(request: Request) {
 
   const trimmedContact = contact.trim();
 
-  if (contactMethod === "email" && !isValidEmail(trimmedContact)) {
-    return Response.json({ error: "Ingresá un email válido." }, { status: 400 });
+  const contactError = validateContact(trimmedContact, contactMethod);
+  if (contactError) {
+    const error = contactError === "email" ? "Ingresá un email válido."
+      : "Ingresá un número válido con código de país y de área.";
+    return Response.json({ error }, { status: 400 });
   }
 
   const supabase = createClient(supabaseUrl, supabaseSecretKey, {
@@ -82,7 +84,7 @@ export async function POST(request: Request) {
     company: company.trim(),
     contact_method: contactMethod,
     contact_value: trimmedContact,
-    message: message.trim(),
+    message: `Servicio: ${contactServices.find((option) => option.value === service)!.es}\n\n${message.trim()}`,
     name: name.trim(),
   });
 

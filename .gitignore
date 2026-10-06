@@ -6,3 +6,5 @@ out/
 .env*
 !.env.example
 santiscian.mp4
+*.tsbuildinfo
+supabase/.temp/
