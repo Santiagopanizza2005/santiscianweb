@@ -65,6 +65,9 @@ export function ProjectCarousel({ language }: { language: Language }) {
   const [slideDistance, setSlideDistance] = useState(1);
   const dragStart = useRef<{ x: number; y: number; id: number } | null>(null);
   const suppressClick = useRef(false);
+  const nativeScroll = useRef(false);
+  const nativeInteracting = useRef(false);
+  const [nativeScrolling, setNativeScrolling] = useState(false);
   const [paused, setPaused] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [contentRevealed, setContentRevealed] = useState(false);
@@ -81,6 +84,102 @@ export function ProjectCarousel({ language }: { language: Language }) {
     const frame = window.requestAnimationFrame(() => setContentRevealed(true));
     return () => window.cancelAnimationFrame(frame);
   }, []);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const mobileLayout = window.matchMedia("(max-width: 768px)");
+    nativeScroll.current = mobileLayout.matches;
+    let touching = false;
+    let touchStartLeft = 0;
+    let scrollTimer = 0;
+
+    const finishScrolling = () => {
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        scrollTimer = 0;
+        if (touching) return;
+        nativeInteracting.current = false;
+        setNativeScrolling(false);
+      }, 140);
+    };
+
+    const handleScroll = () => {
+      if (!nativeScroll.current) return;
+      nativeInteracting.current = true;
+      setNativeScrolling(true);
+      if (touching && Math.abs(viewport.scrollLeft - touchStartLeft) > 8) suppressClick.current = true;
+      const distance = getSlideDistance(viewport);
+      if (distance > 0) {
+        setSlide(Math.max(0, Math.min(projects.length - 1, Math.round(viewport.scrollLeft / distance))));
+      }
+      finishScrolling();
+    };
+
+    const startTouch = () => {
+      if (!nativeScroll.current) return;
+      touching = true;
+      touchStartLeft = viewport.scrollLeft;
+      suppressClick.current = false;
+      nativeInteracting.current = true;
+      setNativeScrolling(true);
+      window.clearTimeout(scrollTimer);
+    };
+
+    const endTouch = () => {
+      if (!nativeScroll.current) return;
+      touching = false;
+      finishScrolling();
+    };
+
+    const alignSlide = () => {
+      if (!nativeScroll.current || touching || scrollTimer) return;
+      viewport.scrollTo({ left: Math.max(0, previousSlide.current) * getSlideDistance(viewport), behavior: "instant" });
+    };
+
+    const changeLayout = () => {
+      nativeScroll.current = mobileLayout.matches;
+      nativeInteracting.current = false;
+      touching = false;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = 0;
+      dragStart.current = null;
+      setIsDragging(false);
+      setDragOffset(0);
+      setNativeScrolling(false);
+      alignSlide();
+    };
+
+    viewport.addEventListener("scroll", handleScroll, { passive: true });
+    viewport.addEventListener("touchstart", startTouch, { passive: true });
+    viewport.addEventListener("touchend", endTouch, { passive: true });
+    viewport.addEventListener("touchcancel", endTouch, { passive: true });
+    mobileLayout.addEventListener("change", changeLayout);
+    const observer = new ResizeObserver(alignSlide);
+    observer.observe(viewport);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(scrollTimer);
+      viewport.removeEventListener("scroll", handleScroll);
+      viewport.removeEventListener("touchstart", startTouch);
+      viewport.removeEventListener("touchend", endTouch);
+      viewport.removeEventListener("touchcancel", endTouch);
+      mobileLayout.removeEventListener("change", changeLayout);
+    };
+  }, []);
+
+  const goToSlide = (index: number) => {
+    const viewport = viewportRef.current;
+    if (nativeScroll.current && viewport) {
+      viewport.scrollTo({
+        left: index * getSlideDistance(viewport),
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      });
+    } else {
+      setSlide(index);
+    }
+  };
 
   const finishDrag = (event: PointerEvent<HTMLDivElement>, cancelled = false) => {
     const start = dragStart.current;
@@ -105,7 +204,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
     let gesturing = false;
 
     const handleWheel = (event: WheelEvent) => {
-      if (event.ctrlKey || dragStart.current || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      if (nativeScroll.current || event.ctrlKey || dragStart.current || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
       event.preventDefault();
       if (!gesturing) {
         gesturing = true;
@@ -175,7 +274,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
       if (index === slide) {
         const previewDuration = Math.min(PREVIEW_SECONDS, video.duration);
         if (previousSlide.current !== slide && video.currentTime >= previewDuration) video.currentTime = 0;
-        if (paused || !isVisible) video.pause();
+        if (paused || !isVisible || nativeScrolling) video.pause();
         else void video.play().catch(() => {});
       } else {
         video.pause();
@@ -183,7 +282,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
     });
     previousSlide.current = slide;
 
-  }, [slide, paused, isVisible]);
+  }, [slide, paused, isVisible, nativeScrolling]);
 
   function updatePlayback(index: number, video: HTMLVideoElement) {
     setPlayback((current) => current.map((entry, entryIndex) => entryIndex === index
@@ -192,14 +291,14 @@ export function ProjectCarousel({ language }: { language: Language }) {
   }
 
   function advancePreview(index: number) {
-    if (index !== previousSlide.current || paused || !isVisible || advancing.current) return;
+    if (index !== previousSlide.current || paused || !isVisible || advancing.current || nativeInteracting.current) return;
     advancing.current = true;
     const video = videos.current[index];
     if (video) {
       video.pause();
       if (video.currentTime > PREVIEW_SECONDS) video.currentTime = PREVIEW_SECONDS;
     }
-    setSlide((index + 1) % projects.length);
+    goToSlide((index + 1) % projects.length);
   }
 
   return (
@@ -209,6 +308,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
         ref={viewportRef}
         className={`project-carousel__viewport${isDragging ? " project-carousel__viewport--dragging" : ""}`}
         onPointerDown={(event) => {
+          if (nativeScroll.current) return;
           if (!event.isPrimary || event.button !== 0) return;
           setSlideDistance(getSlideDistance(event.currentTarget));
           dragStart.current = { x: event.clientX, y: event.clientY, id: event.pointerId };
@@ -216,6 +316,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
           setIsDragging(true);
         }}
         onPointerMove={(event) => {
+          if (nativeScroll.current) return;
           const start = dragStart.current;
           if (!start || start.id !== event.pointerId) return;
           if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8) {
@@ -309,7 +410,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
               aria-label={project.name}
               className="project-carousel__dot"
               key={project.name}
-              onClick={() => setSlide(index)}
+              onClick={() => goToSlide(index)}
               type="button"
             />
             )}

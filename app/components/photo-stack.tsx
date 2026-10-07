@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, type CSSProperties } from "react";
 import type { Language } from "./language-switcher";
 
-const photos = ["/fotos-about/1.png", "/fotos-about/photo-2.jpg", "/fotos-about/photo-3.jpg", "/fotos-about/photo-4.jpg", "/fotos-about/photo-5.jpg"];
+const photos = ["/fotos-about/1.webp", "/fotos-about/photo-2.webp", "/fotos-about/photo-3.webp", "/fotos-about/photo-4.webp", "/fotos-about/photo-5.webp"];
 const rotations = [-5, 7, -9, 4, -2];
 const socialProfiles = [
   { name: "Instagram", href: "https://www.instagram.com/santiscian/" },

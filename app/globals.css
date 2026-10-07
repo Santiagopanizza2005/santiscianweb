@@ -2168,6 +2168,29 @@ body:has(.blank-project-page) {
   animation: none;
 }
 
+@media (max-width: 768px) {
+  .project-carousel__viewport {
+    cursor: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: none;
+    scroll-padding-inline: calc((100% - var(--project-card-width)) / 2);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: auto;
+  }
+
+  .project-carousel__viewport::-webkit-scrollbar { display: none; }
+
+  .project-carousel__viewport > .project-carousel__track {
+    margin-left: 0;
+    padding-inline: calc((100vw - var(--project-card-width)) / 2);
+    transform: none;
+    transition: none;
+  }
+
+  .project-carousel__card { scroll-snap-align: start; }
+}
+
 .photo-stack {
   scroll-margin-top: 6rem;
   background: #fff;
