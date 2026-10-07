@@ -3,42 +3,42 @@ import type { Language } from "./language-switcher";
 export const projectDescriptions: Record<string, Record<Language, string[]>> = {
   "/ecohabit-video.mp4": {
     es: [
-      "Junto a Mindpraxis, desarrollé Ecohabit para ayudar a las empresas a **convertir las tareas de sus vendedores en hábitos**. La solución permite **medir el aprendizaje** y acompañar el desarrollo de hábitos de forma progresiva.",
-      "El objetivo es que el aprendizaje se traduzca en acciones cotidianas. Ecohabit ayuda a dar seguimiento a ese proceso y a entender cómo avanza cada vendedor, para que la empresa pueda **acompañar mejor a su equipo**.",
+      "Junto a Mindpraxis, desarrollé Ecohabit como **una plataforma construida alrededor de un agente de IA**. Conecté el agente con la agenda, los objetivos, el conocimiento interno y las métricas comerciales para acompañar el trabajo y el aprendizaje de los vendedores.",
+      "El agente puede **consultar datos, apoyar la creación de reportes y ejecutar acciones de gestión** mediante herramientas con permisos y confirmación. Construí también las interfaces donde el equipo revisa la información y los resultados: conversación, datos y operación forman parte del mismo sistema.",
     ],
     en: [
-      "Together with Mindpraxis, I developed Ecohabit to help companies **turn their sales teams’ tasks into habits**. The solution **measures learning** and supports the gradual development of habits.",
-      "The goal is to turn learning into everyday actions. Ecohabit helps track that process and understand each salesperson’s progress, so companies can **better support their teams**.",
+      "Together with Mindpraxis, I developed Ecohabit as **a platform built around an AI agent**. I connected the agent to the agenda, goals, internal knowledge and commercial metrics to support salespeople’s work and learning.",
+      "The agent can **retrieve data, support report creation and perform management actions** through tools with permissions and confirmation. I also built the interfaces where the team reviews information and results: conversation, data and operations belong to the same system.",
     ],
   },
   "/izr-ivr-video.mp4": {
     es: [
-      "Desarrollé para Izrastzoff un **agente de voz** que atiende las llamadas de todas sus sucursales **fuera del horario laboral**. Así, las consultas pueden recibir atención incluso cuando el equipo de la inmobiliaria no está disponible.",
-      "La solución responde a un problema concreto: evitar que una llamada sin atender se convierta en un **potencial cliente perdido**. El agente permite mantener la atención fuera de horario sin depender de que una persona esté disponible en ese momento.",
+      "Diseñé y desarrollé para Izrastzoff **un agente de voz integrado a su flujo de atención inmobiliaria**. Atiende fuera del horario laboral, distingue búsquedas de propiedades, pedidos de tasación y otras consultas, y reúne la información necesaria para el equipo.",
+      "Conecté la conversación con **herramientas de registro, fichas de prospectos y notificaciones por correo**. El agente prepara la consulta para que un asesor humano continúe; el panel permite revisar llamadas, consumo de IA, actividad y configuración del servicio.",
     ],
     en: [
-      "I developed a **voice agent** for Izrastzoff that answers calls across all its branches **outside business hours**. Enquiries can receive attention even when the real estate team is unavailable.",
-      "The solution addresses a concrete problem: preventing an unanswered call from becoming a **lost potential client**. The agent keeps support available after hours without relying on someone being available at that moment.",
+      "I designed and developed for Izrastzoff **a voice agent integrated into its real estate enquiry workflow**. It answers outside business hours, distinguishes property searches, valuation requests and other enquiries, and gathers the information the team needs.",
+      "I connected conversation to **record-saving tools, prospect records and email notifications**. The agent prepares the enquiry for a human adviser to continue. The dashboard provides visibility into calls, AI usage, activity and service settings.",
     ],
   },
   "/mobi-video.mp4": {
     es: [
-      "Desarrollé un **panel de administración** para que el equipo de Mobihunter pueda **gestionar juegos, desafíos, preguntas, eventos y usuarios** desde un solo lugar. La herramienta reúne las tareas de gestión del juego en una misma interfaz.",
-      "También permite consultar **métricas de las partidas, ingresos y tasas de abandono**. Con esa información, el equipo puede seguir el rendimiento de sus juegos y detectar dónde mejorar la experiencia de los jugadores.",
+      "Desarrollé el panel de Mobihunter e integré **traducción de contenido con IA** en la gestión de juegos, preguntas y desafíos. El equipo genera versiones en español, inglés y portugués desde el editor, las revisa y decide qué guardar y publicar.",
+      "Conecté ese flujo con la app y con **métricas de partidas, ingresos y abandono**. Es un caso de IA aplicada a una tarea concreta, con revisión humana e integración a los sistemas que sostienen la operación del negocio.",
     ],
     en: [
-      "I developed an **admin panel** so the Mobihunter team can **manage games, challenges, questions, events and users** in one place. The tool brings game management tasks together in a single interface.",
-      "It also provides **game metrics, revenue and abandonment rates**. This information helps the team track game performance and identify where to improve the player experience.",
+      "I developed Mobihunter’s dashboard and integrated **AI-powered content translation** into game, question and challenge management. The team generates Spanish, English and Portuguese versions in the editor, reviews them and decides what to save and publish.",
+      "I connected that workflow to the app and **session, revenue and drop-off metrics**. It is a case of AI applied to a specific task, with human review and integration into the systems that support business operations.",
     ],
   },
   "/mobicelular-video.mp4": {
     es: [
-      "Desarrollé la app de Mobihunter para que los jugadores puedan elegir sus juegos, **resolver preguntas y completar desafíos desde el celular**. La experiencia reúne **el progreso de cada partida, los resultados y el ranking** en un solo lugar.",
-      "La app está conectada con el **panel de administración**, vinculando la experiencia del jugador con la gestión de los juegos. Así, los jugadores tienen un lugar para participar y seguir sus resultados, mientras el equipo administra el contenido desde su panel.",
+      "Desarrollé la experiencia móvil de Mobihunter conectando **el contenido preparado y traducido con IA en el panel** con el catálogo, las preguntas y los desafíos que recibe el jugador. Las versiones guardadas se presentan en el idioma elegido por el usuario.",
+      "Integré acceso, progreso, resultados y ranking con **los datos de gestión del negocio**. La app completa el recorrido: el contenido llega al jugador y sus partidas alimentan las métricas que consulta el equipo en el panel.",
     ],
     en: [
-      "I developed the Mobihunter app so players can choose games, **answer questions and complete challenges on their phones**. The experience brings together **game progress, results and rankings** in one place.",
-      "The app connects to the **admin panel**, linking the player experience with game management. Players have a place to participate and follow their results, while the team manages content from its panel.",
+      "I developed Mobihunter’s mobile experience by connecting **content prepared and translated with AI in the dashboard** to the catalogue, questions and challenges players receive. Saved versions are presented in the user’s chosen language.",
+      "I integrated access, progress, results and rankings with **business management data**. The app completes the journey: content reaches players and their sessions feed the metrics the team reviews in the dashboard.",
     ],
   },
 };

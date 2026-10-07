@@ -1,6 +1,6 @@
 export const contactServices = [
-  { value: "ai-agents", es: "Agentes de IA", en: "AI Agents" },
-  { value: "web-native-apps", es: "Apps Web y Nativas", en: "Web & Native Apps" },
+  { value: "agent-discovery", es: "Diagnóstico de IA", en: "Agent Discovery" },
+  { value: "agent-build", es: "Desarrollo de agentes", en: "Agent Build" },
   { value: "other", es: "Otro", en: "Other" },
 ] as const;
 

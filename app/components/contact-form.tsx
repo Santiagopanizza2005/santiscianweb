@@ -8,6 +8,7 @@ import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { getContactMethod, validateContact, type ContactError } from "../../lib/contact-validation";
 import { contactServices, isContactService } from "../../lib/contact-services";
+import { ContactSelect } from "./contact-select";
 
 const subscribe = () => () => {};
 const getServerLanguage = (): Language => "es";
@@ -36,7 +37,6 @@ const copy = {
     company: "Nombre de tu empresa",
     service: "¿Qué servicio necesitás?",
     budget: "¿Cuál es tu presupuesto estimado?",
-    budgetPlaceholder: "Seleccioná una opción",
     budgetOptions: [
       { value: "1000-2500", label: "De 1.000 a 2.500" },
       { value: "2500-4000", label: "De 2.500 a 4.000" },
@@ -74,7 +74,6 @@ const copy = {
     company: "Your company name",
     service: "Which service do you need?",
     budget: "What is your estimated budget?",
-    budgetPlaceholder: "Select an option",
     budgetOptions: [
       { value: "1000-2500", label: "1,000 to 2,500" },
       { value: "2500-4000", label: "2,500 to 4,000" },
@@ -125,16 +124,29 @@ export function ContactForm() {
   const [feedback, setFeedback] = useState("");
   const [errors, setErrors] = useState<Partial<Record<FieldName, FieldError>>>({});
   const [submitAttempt, setSubmitAttempt] = useState(0);
+  const [serviceSelection, setServiceSelection] = useState({ source: initialService, value: initialService });
+  const serviceValue = serviceSelection.source === initialService ? serviceSelection.value : initialService;
+  const [budgetValue, setBudgetValue] = useState("");
   const text = copy[language];
   const contactMethod = getContactMethod(contactValue);
 
-  function fieldError(field: FieldName) {
-    if (!errors[field]) return null;
-    const message = errors[field] === "email" ? text.invalidEmail
+  function errorMessage(field: FieldName) {
+    if (!errors[field]) return undefined;
+    return errors[field] === "email" ? text.invalidEmail
       : errors[field] === "phone" ? text.invalidPhone
       : errors[field] === "areaCode" ? text.missingAreaCode
       : text.missing[field];
-    return <span aria-live="polite" className="contact-floating-label contact-field-error" id={`${field}-error`}>{message}</span>;
+  }
+
+  function fieldError(field: FieldName) {
+    const message = errorMessage(field);
+    return message ? <span aria-live="polite" className="contact-floating-label contact-field-error" id={`${field}-error`}>{message}</span> : null;
+  }
+
+  function selectValue(field: "service" | "budget", value: string) {
+    if (field === "service") setServiceSelection({ source: initialService, value });
+    else setBudgetValue(value);
+    setErrors((current) => ({ ...current, [field]: validateField(field, value) }));
   }
 
   function handleChange(event: React.FormEvent<HTMLFormElement>) {
@@ -175,8 +187,10 @@ export function ContactForm() {
       setStatus("idle");
       setSubmitAttempt((attempt) => attempt + 1);
       const firstInvalid = fieldNames.find((field) => nextErrors[field]);
+      const customControl = form.querySelector<HTMLButtonElement>(`[data-field="${firstInvalid}"]`);
       const control = form.elements.namedItem(firstInvalid!);
-      if (control instanceof HTMLElement) control.focus();
+      if (customControl) customControl.focus();
+      else if (control instanceof HTMLElement) control.focus();
       return;
     }
     setFeedback("");
@@ -204,6 +218,8 @@ export function ContactForm() {
       }
 
       form.reset();
+      setServiceSelection({ source: initialService, value: initialService });
+      setBudgetValue("");
       setContactValue("");
       setStatus("success");
       setFeedback(text.success);
@@ -237,27 +253,9 @@ export function ContactForm() {
             </div>
           </label>
 
-          <label className="contact-floating-field">
-            <div className="contact-field-control">
-              {errors.service ? fieldError("service") : <span className="contact-floating-label">{text.service}</span>}
-              <select aria-label={text.service} aria-invalid={!!errors.service} aria-describedby={errors.service ? "service-error" : undefined} defaultValue={initialService} key={initialService} name="service" required>
-                <option disabled value="">{text.budgetPlaceholder}</option>
-                {contactServices.map((service) => <option key={service.value} value={service.value}>{service[language]}</option>)}
-              </select>
-            </div>
-          </label>
+          <ContactSelect name="service" label={text.service} options={contactServices.map((service) => ({ value: service.value, label: service[language] }))} value={serviceValue} onChange={(value) => selectValue("service", value)} error={errorMessage("service")} />
 
-          <label className="contact-floating-field">
-            <div className="contact-field-control">
-              {errors.budget ? fieldError("budget") : <span className="contact-floating-label">{text.budget}</span>}
-            <select aria-label={text.budget} aria-invalid={!!errors.budget} aria-describedby={errors.budget ? "budget-error" : undefined} defaultValue="" name="budget" required>
-              <option disabled value="">{text.budgetPlaceholder}</option>
-              {text.budgetOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-            </div>
-          </label>
+          <ContactSelect name="budget" label={text.budget} options={text.budgetOptions} value={budgetValue} onChange={(value) => selectValue("budget", value)} error={errorMessage("budget")} />
 
           <label className="contact-floating-field">
             <div className="contact-field-control">
@@ -312,7 +310,7 @@ export function ContactForm() {
         </form>
       </section>
     </main>
-    <SiteFooter language={language} contactHref="#contact-title" />
+    <SiteFooter language={language} />
     </>
   );
 }

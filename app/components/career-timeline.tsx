@@ -14,15 +14,15 @@ const years: { year: number; milestones: Record<Language, string[]> }[] = [
   {
     year: 2025,
     milestones: {
-      es: ["Dejé mi primera app de marketing y empecé a trabajar con agencias inmobiliarias, desarrollando soluciones para automatizar la atención al cliente y sus tareas diarias."],
-      en: ["I moved on from my first marketing app and began working with real estate agencies, developing solutions to automate customer support and everyday tasks."],
+      es: ["Empecé a trabajar con automatizaciones y agentes de inteligencia artificial, creando soluciones para ayudar a las empresas a automatizar la atención al cliente y sus tareas diarias."],
+      en: ["I began working with AI automations and agents, creating solutions to help businesses automate customer support and everyday tasks."],
     },
   },
   {
     year: 2024,
     milestones: {
-      es: ["Empecé a programar y creé mi primer sistema: una app que ayudaba a armar estrategias de marketing con inteligencia artificial, uniendo mi experiencia en ventas y contenido con el desarrollo de software."],
-      en: ["I started coding and built my first system: an app that helped create marketing strategies with AI, connecting my experience in sales and content with software development."],
+      es: ["Empecé a dedicarme al marketing digital y a trabajar con distintos negocios, ayudándolos con sus estrategias de marketing y desarrollando sus páginas web y tiendas online."],
+      en: ["I began focusing on digital marketing and working with different businesses, helping them with their marketing strategies and building their websites and online stores."],
     },
   },
   {
@@ -65,7 +65,7 @@ export function CareerTimeline({ language }: { language: Language }) {
               <div className="career-timeline__milestones">
                 {milestones[language].map((milestone) => (
                   <p key={milestone}>
-                    {milestone.split(/(más de 3 apps en la App Store|desarrollo de software y apps|agencias inmobiliarias|automatizar la atención al cliente|Empecé a programar|inteligencia artificial|mi primer emprendimiento|e-commerce de llaveros|more than 3 apps on the App Store|software and app development|real estate agencies|automate customer support|I started coding|AI|my first business|e-commerce store selling keychains)/g).map((part, index) => (
+                    {milestone.split(/(más de 3 apps en la App Store|desarrollo de software y apps|automatizaciones y agentes de inteligencia artificial|automatizar la atención al cliente|marketing digital|páginas web y tiendas online|mi primer emprendimiento|e-commerce de llaveros|more than 3 apps on the App Store|software and app development|AI automations and agents|automate customer support|digital marketing|websites and online stores|my first business|e-commerce store selling keychains)/g).map((part, index) => (
                       <Fragment key={index}>{index % 2 === 1 ? <strong>{part}</strong> : part}</Fragment>
                     ))}
                   </p>

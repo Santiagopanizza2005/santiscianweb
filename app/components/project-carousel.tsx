@@ -11,40 +11,40 @@ const projects: { name: string; slug: string; src: string; title?: Record<Langua
     name: "Ecohabit",
     slug: "ecohabit",
     src: "/ecohabit-video.mp4",
-    title: { es: "Un coach para tus vendedores.", en: "A coach for your sales team." },
+    title: { es: "Un agente para tu equipo de ventas.", en: "An agent for your sales team." },
     description: {
-      es: "Junto a Mindpraxis, desarrollé Ecohabit, una solución que permite a las empresas convertir las tareas de sus vendedores en hábitos. Ecohabit permite medir el aprendizaje y ayudar a los vendedores a desarrollar hábitos de forma progresiva.",
-      en: "Together with Mindpraxis, I developed Ecohabit, a solution that helps companies turn their sales teams’ tasks into habits. Ecohabit measures learning and helps salespeople develop habits progressively.",
+      es: "Junto a Mindpraxis, desarrollé un agente conectado a la agenda, el conocimiento interno y las métricas comerciales. Acompaña el aprendizaje y permite realizar acciones de gestión con permisos y confirmación.",
+      en: "Together with Mindpraxis, I developed an agent connected to the agenda, internal knowledge and commercial metrics. It supports learning and enables management actions with permissions and confirmation.",
     },
   },
   {
     name: "Izrastzoff",
     slug: "izr",
     src: "/izr-ivr-video.mp4",
-    title: { es: "Su propio agente de voz.", en: "Their own voice agent." },
+    title: { es: "Un agente de voz para atender y derivar.", en: "A voice agent for enquiries and handoffs." },
     description: {
-      es: "Desarrollé para Izrastoff, una agencia inmobiliaria, un agente de voz que atiende las llamadas de todas sus sucursales fuera del horario laboral. Así, la agencia puede responder consultas y evitar perder potenciales clientes cuando su equipo no está disponible.",
-      en: "I developed a voice agent for Izrastoff, a real estate agency, that answers calls across all its branches outside business hours. It helps the agency respond to enquiries and avoid losing potential clients when its team is unavailable.",
+      es: "Desarrollé para Izrastzoff un agente que atiende fuera de horario, clasifica consultas y guarda los datos del prospecto. Integré telefonía, registro y correo para entregar la información al asesor y supervisar la operación.",
+      en: "I developed an agent for Izrastzoff that answers after hours, classifies enquiries and saves prospect details. I integrated telephony, records and email to hand information to advisers and oversee operations.",
     },
   },
   {
     name: "Mobihunter Admin",
     slug: "mobihunter-admin",
     src: "/mobi-video.mp4",
-    title: { es: "El admin que todo juego necesita.", en: "The admin every game needs." },
+    title: { es: "IA integrada a la gestión de contenido.", en: "AI integrated into content operations." },
     description: {
-      es: "Desarrollé para Mobihunter un panel de administración que permite gestionar juegos, desafíos, preguntas, eventos y usuarios desde un solo lugar. También reúne métricas de las partidas, ingresos y tasas de abandono para que el equipo pueda seguir el rendimiento de sus juegos y mejorar la experiencia de los jugadores.",
-      en: "I developed an admin panel for Mobihunter to manage games, challenges, questions, events and users in one place. It also brings together game metrics, revenue and abandonment rates so the team can track performance and improve the player experience.",
+      es: "Integré traducción con IA en el panel de Mobihunter para preparar juegos, preguntas y desafíos en varios idiomas. El equipo revisa el contenido y sigue partidas, ingresos y abandono desde el mismo sistema.",
+      en: "I integrated AI translation into Mobihunter’s dashboard to prepare games, questions and challenges in multiple languages. The team reviews content and tracks sessions, revenue and drop-off within the same system.",
     },
   },
   {
     name: "Mobihunter App",
     slug: "mobihunter-app",
     src: "/mobicelular-video.mp4",
-    title: { es: "Una aventura en tu celular.", en: "An adventure on your phone." },
+    title: { es: "IA aplicada a una experiencia móvil.", en: "AI applied to a mobile experience." },
     description: {
-      es: "Desarrollé la app de Mobihunter para que los jugadores puedan elegir sus juegos, resolver preguntas y completar desafíos desde el celular. La experiencia reúne el progreso de cada partida, los resultados y el ranking en un solo lugar, conectado con el panel de administración.",
-      en: "I developed the Mobihunter app so players can choose games, answer questions and complete challenges on their phones. It brings together game progress, results and rankings in one place, connected to the admin panel.",
+      es: "Conecté el contenido preparado y traducido con IA en el panel con la experiencia del jugador. Catálogo, desafíos, progreso y resultados forman un recorrido que devuelve datos a la operación del negocio.",
+      en: "I connected content prepared and translated with AI in the dashboard to the player experience. The catalogue, challenges, progress and results form a journey that feeds data back into business operations.",
     },
   },
 ];
@@ -67,6 +67,7 @@ export function ProjectCarousel({ language }: { language: Language }) {
   const suppressClick = useRef(false);
   const [paused, setPaused] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [contentRevealed, setContentRevealed] = useState(false);
   const videos = useRef<(HTMLVideoElement | null)[]>([]);
   const previousSlide = useRef(-1);
   const advancing = useRef(false);
@@ -75,6 +76,11 @@ export function ProjectCarousel({ language }: { language: Language }) {
   const progress = duration > 0 ? currentTime / duration * 100 : 0;
   const destination = Math.max(0, Math.min(projects.length - 1, slide + (dragOffset < 0 ? 1 : -1)));
   const gestureProgress = destination === slide ? 0 : Math.min(1, Math.abs(dragOffset) / slideDistance);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setContentRevealed(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const finishDrag = (event: PointerEvent<HTMLDivElement>, cancelled = false) => {
     const start = dragStart.current;
@@ -197,8 +203,8 @@ export function ProjectCarousel({ language }: { language: Language }) {
   }
 
   return (
-    <section aria-labelledby="projects-title" aria-roledescription="carousel" className="project-carousel" style={{ "--project-controls-width": `${4.5 + projects.length * 1.5}rem` } as CSSProperties}>
-      <h2 id="projects-title">{language === "es" ? "Mis proyectos" : "My projects"}</h2>
+    <section aria-labelledby="projects-title" aria-roledescription="carousel" className={`project-carousel${contentRevealed ? " project-carousel--revealed" : ""}`} style={{ "--project-controls-width": `${4.5 + projects.length * 1.5}rem` } as CSSProperties}>
+      <h2 id="projects-title">{language === "es" ? "Proyectos" : "Projects"}</h2>
       <div
         ref={viewportRef}
         className={`project-carousel__viewport${isDragging ? " project-carousel__viewport--dragging" : ""}`}

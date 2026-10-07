@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Mobihunter Admin | Santi Scian" };
 
 export default async function ProjectPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
   const { lang } = await searchParams;
-  const subtitle = lang === "en" ? "The admin every game needs." : "El admin que todo juego necesita.";
+  const subtitle = lang === "en" ? "AI integrated into content operations." : "IA integrada a la gestión de contenido.";
   return (
     <>
       <ProjectVideo language={lang === "en" ? "en" : "es"} subtitle={subtitle} name="Mobihunter Admin" src="/mobi-video.mp4" />

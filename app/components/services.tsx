@@ -11,19 +11,18 @@ const content = {
     custom: "Cotización a medida",
     includes: "Todo lo que incluye",
     cta: "Consultar disponibilidad",
-    support: "1 mes de soporte gratis",
     services: [
       {
-        value: "ai-agents",
-        title: "Agentes de IA",
-        subtitle: "Automatizá tareas y atendé a tus clientes con un agente hecho para tu empresa.",
-        features: ["Análisis de tus necesidades", "Diseño y desarrollo del agente", "Integración con tus herramientas", "Pruebas y ajustes", "Implementación y puesta en marcha", "Documentación y acompañamiento"],
+        value: "agent-discovery",
+        title: "Diagnóstico de IA",
+        subtitle: "Para empresas que quieren implementar agentes de IA, pero todavía no saben dónde. Analizamos procesos, detectamos oportunidades y definimos qué agente conviene construir.",
+        features: ["Análisis de tus procesos", "Identificación de oportunidades", "Evaluación de viabilidad y límites", "Priorización de casos de uso", "Definición del agente y su alcance", "Hoja de ruta para su desarrollo"],
       },
       {
-        value: "web-native-apps",
-        title: "Apps Web y Nativas",
-        subtitle: "Convertí tu idea en una app para la web o el celular, diseñada a medida.",
-        features: ["Análisis y definición del proyecto", "Diseño de la interfaz y experiencia", "Desarrollo a medida", "Integraciones y base de datos", "Pruebas y control de calidad", "Implementación y lanzamiento"],
+        value: "agent-build",
+        title: "Desarrollo de agentes",
+        subtitle: "Incluye el diagnóstico de IA completo, además del diseño, desarrollo e integración del agente en tus sistemas.",
+        features: ["Todo lo incluido en Diagnóstico de IA", "Diseño del agente y sus flujos", "Desarrollo a medida", "Integración con tus sistemas", "Pruebas y ajustes", "Implementación y puesta en marcha", "Documentación y transferencia al equipo"],
       },
     ],
   },
@@ -33,19 +32,18 @@ const content = {
     custom: "Tailored quote",
     includes: "Everything included",
     cta: "Check availability",
-    support: "1 month of free support",
     services: [
       {
-        value: "ai-agents",
-        title: "AI Agents",
-        subtitle: "Automate tasks and support your customers with an agent built for your business.",
-        features: ["Analysis of your needs", "Agent design and development", "Integration with your tools", "Testing and refinements", "Implementation and launch", "Documentation and guidance"],
+        value: "agent-discovery",
+        title: "Agent Discovery",
+        subtitle: "For companies that want to implement AI agents but aren't sure where to start. We analyze processes, identify opportunities and define which agent makes sense to build.",
+        features: ["Process analysis", "Opportunity identification", "Feasibility and limitations assessment", "Use case prioritization", "Agent definition and scope", "Development roadmap"],
       },
       {
-        value: "web-native-apps",
-        title: "Web & Native Apps",
-        subtitle: "Turn your idea into a web or mobile app, designed around your needs.",
-        features: ["Project analysis and planning", "Interface and experience design", "Custom development", "Integrations and database", "Testing and quality assurance", "Implementation and launch"],
+        value: "agent-build",
+        title: "Agent Build",
+        subtitle: "Includes the full Agent Discovery service, plus agent design, development and integration into your systems.",
+        features: ["Everything included in Agent Discovery", "Agent and workflow design", "Custom development", "Integration with your systems", "Testing and refinements", "Implementation and launch", "Documentation and team handover"],
       },
     ],
   },
@@ -122,7 +120,7 @@ export function Services({ language }: { language: Language }) {
             <hr />
             <h4>{text.includes}</h4>
             <ul>
-              {[...service.features, text.support].map((feature) => (
+              {service.features.map((feature) => (
                 <li key={feature}><span aria-hidden="true">✓</span>{feature}</li>
               ))}
             </ul>
