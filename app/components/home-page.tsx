@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ProjectCarousel } from "./project-carousel";
 import { CapabilityCards } from "./capability-cards";
 import { PhotoStack } from "./photo-stack";
@@ -69,6 +70,15 @@ export function HomePage() {
 
       <section className="intro" aria-labelledby="main-title">
         <div className="figma-frame">
+        <a className="loom-tag" href="https://loom.santiscian.com">
+          <Image src="/loom-blanco.svg" alt="" width={25} height={20} />
+          <span>Taza con Loom</span>
+          <span className="loom-tag__arrow" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M4 12h16m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          </span>
+        </a>
           <h1 className={`figma-frame__title${isTitleReady ? " figma-frame__title--ready" : ""}`} id="main-title">
             {text.title.map((line) => <span key={line}>{line}</span>)}
           </h1>
