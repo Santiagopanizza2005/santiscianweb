@@ -649,6 +649,31 @@ body:has(.blank-project-page) {
   .site-header .language-button { flex-shrink: 0; padding-inline: 0.6rem; }
 }
 
+@media (max-width: 768px) {
+  .site-header {
+    flex-wrap: nowrap;
+    width: calc(100vw - 1.25rem);
+    max-width: calc(100vw - 1.25rem);
+  }
+
+  .site-header__nav { display: none; }
+
+  .site-header__logo {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .site-header .header-cta {
+    font-size: clamp(0.65rem, 2.8vw, 0.8rem);
+    padding-inline: 0.65rem;
+  }
+
+  .site-header .language-button {
+    font-size: clamp(0.65rem, 2.8vw, 0.75rem);
+    padding-inline: 0.55rem;
+  }
+}
+
 .header-cta {
   appearance: none;
   background: #0071e3;
@@ -803,6 +828,28 @@ body:has(.blank-project-page) {
 .loom-tag:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 5px;
+}
+
+@media (max-width: 768px) {
+  .loom-tag {
+    bottom: calc(100% + 2.5rem);
+    max-width: calc(100vw - 3rem);
+    min-height: 2.75rem;
+    gap: 0.55rem;
+    padding: 0.35rem 0.35rem 0.35rem 0.75rem;
+    font-size: clamp(0.75rem, 3.2vw, 0.875rem);
+  }
+
+  .loom-tag > img {
+    flex-shrink: 0;
+    width: 1.35rem;
+    height: auto;
+  }
+
+  .loom-tag__arrow {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
 }
 
 .figma-frame {
