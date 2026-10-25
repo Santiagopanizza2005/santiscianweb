@@ -70,9 +70,9 @@ export function HomePage() {
 
       <section className="intro" aria-labelledby="main-title">
         <div className="figma-frame">
-        <a className="loom-tag" href="https://loom.santiscian.com">
+        <a className="loom-tag" href="https://ublyo.com">
           <Image src="/loom-blanco.svg" alt="" width={25} height={20} />
-          <span>Taza con Loom</span>
+          <span>Taza con Ublyo</span>
           <span className="loom-tag__arrow" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M4 12h16m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
