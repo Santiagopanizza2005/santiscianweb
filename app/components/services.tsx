@@ -115,7 +115,7 @@ export function Services({ language }: { language: Language }) {
             <p className="service-card__subtitle">{service.subtitle}</p>
             <div className="service-card__price">
               <span>{text.price}</span>
-              <p>{text.custom}</p>
+              <p>{service.value === "agent-discovery" ? "499 USD" : text.custom}</p>
             </div>
             <hr />
             <h4>{text.includes}</h4>

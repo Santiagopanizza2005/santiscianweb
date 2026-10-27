@@ -121,7 +121,6 @@ export function ContactSelect({ name, label, options, value, onChange, error }: 
                   onClick={() => choose(index)}
                 >
                   {option.label}
-                  {option.value === value && <span aria-hidden="true">✓</span>}
                 </li>
               ))}
             </ul>
