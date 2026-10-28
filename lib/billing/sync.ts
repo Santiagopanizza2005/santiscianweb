@@ -1,12 +1,13 @@
 import "server-only";
 import { getSupabaseAdminClient } from "../supabase-admin";
-import { billingConfig, mpRequest, type Preapproval, type Invoice } from "./mercadopago";
+import { billingConfig, mpRequest, verifyBillingAccount, type Preapproval, type Invoice } from "./mercadopago";
 import { checkoutUrl } from "./model";
 
 // Shared with the public site's webhook receiver. Keep both copies in sync.
 export async function syncPreapproval(remote: Preapproval) {
   const config = billingConfig();
   if (!config || String(remote.collector_id) !== config.collector) throw new Error("La suscripción no pertenece a esta cuenta.");
+  await verifyBillingAccount();
   const db = getSupabaseAdminClient();
   const { data: row, error } = await db.from("billing_subscriptions").select("id,mp_id,amount,environment")
     .eq("id", remote.external_reference).eq("environment", config.environment).maybeSingle();
@@ -34,7 +35,9 @@ export async function syncInvoice(invoice: Invoice) {
   if (invoice.payment?.id) {
     const payment = await mpRequest<{ id: number; collector_id: number; status: string; transaction_amount: number; currency_id: string; live_mode: boolean }>(`/v1/payments/${invoice.payment.id}`);
     if (String(payment.collector_id) !== config.collector || payment.currency_id !== "ARS"
-      || payment.live_mode !== (config.environment === "production")
+      // APP_USR credentials of test accounts also return live_mode=true.
+      // The account's test_user tag was verified by syncPreapproval above.
+      || (config.environment === "production" && payment.live_mode !== true)
       || Math.round(Number(payment.transaction_amount) * 100) !== Math.round(Number(invoice.transaction_amount) * 100)) throw new Error("El pago no coincide con la factura.");
     paymentId = String(payment.id); paymentStatus = payment.status;
   }
@@ -70,7 +73,13 @@ export async function refreshSubscription(id: string) {
   }
   if (!/^[a-zA-Z0-9_-]+$/.test(mpId)) throw new Error("Identificador inválido.");
   await syncPreapproval(await mpRequest<Preapproval>(`/preapproval/${mpId}`));
-  const invoices = await mpRequest<{ results: Invoice[]; paging?: { total: number } }>(`/authorized_payments/search?preapproval_id=${encodeURIComponent(mpId)}&limit=100`);
-  for (const invoice of invoices.results ?? []) await syncInvoice(invoice);
-  if ((invoices.paging?.total ?? 0) > 100) throw new Error("Se actualizaron los últimos 100 cobros; el historial anterior se conserva.");
+  for (let offset = 0; offset < 100;) {
+    // Use MP's supported default page size (currently 12), not a guessed limit.
+    const invoices = await mpRequest<{ results: Invoice[]; paging?: { total: number } }>(`/authorized_payments/search?preapproval_id=${encodeURIComponent(mpId)}${offset ? `&offset=${offset}` : ""}`);
+    const page = invoices.results ?? [];
+    for (const invoice of page.slice(0, 100 - offset)) await syncInvoice(invoice);
+    if (!page.length || offset + page.length >= (invoices.paging?.total ?? Infinity)) return;
+    offset += page.length;
+  }
+  throw new Error("Se actualizaron los últimos 100 cobros; el historial anterior se conserva.");
 }

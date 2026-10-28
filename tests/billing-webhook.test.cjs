@@ -28,7 +28,9 @@ test('body cannot replace the authenticated resource ID',async()=>{
 });
 test('events from another environment or merchant are ignored before requesting the provider',async()=>{
  const query=signedQuery;
- assert.equal((await POST(req(query,{type:'subscription_preapproval',live_mode:true},signedHeaders()))).status,200);
+ process.env.MERCADOPAGO_ENVIRONMENT='production';
+ assert.equal((await POST(req(query,{type:'subscription_preapproval',live_mode:false},signedHeaders()))).status,200);
+ process.env.MERCADOPAGO_ENVIRONMENT='test';
  assert.equal((await POST(req(query,{type:'subscription_preapproval',user_id:999},signedHeaders()))).status,200);
  assert.equal(calls,0);
 });

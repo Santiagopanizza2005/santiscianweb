@@ -38,3 +38,14 @@ export async function mpRequest<T>(path: string, method = "GET", body?: unknown,
   if (!response.ok) throw new MercadoPagoError(response.status);
   return response.json() as Promise<T>;
 }
+
+export async function verifyBillingAccount() {
+  const config = billingConfig();
+  if (!config) throw new Error("Falta activar la integración de Mercado Pago.");
+  const account = await mpRequest<{ id: number; tags?: string[] }>("/users/me");
+  const isTestAccount = account.tags?.includes("test_user") === true;
+  if (String(account.id) !== config.collector || isTestAccount !== (config.environment === "test")) {
+    throw new Error("La cuenta de Mercado Pago no corresponde al entorno configurado.");
+  }
+  return config;
+}

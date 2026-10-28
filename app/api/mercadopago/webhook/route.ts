@@ -37,7 +37,10 @@ export async function POST(request: Request) {
     const body = raw ? JSON.parse(raw) : {};
     if (body.data?.id !== undefined && String(body.data.id).toLowerCase() !== queryId.toLowerCase()) return new Response(null, { status: 400 });
     const type = body.type ?? url.searchParams.get("topic");
-    if (body.live_mode !== undefined && body.live_mode !== (config.environment === "production")) return new Response(null, { status: 200 });
+    // Test accounts using APP_USR credentials emit live_mode=true too.
+    // syncPreapproval verifies the account's test_user tag before any write.
+    if (body.live_mode !== undefined && typeof body.live_mode !== "boolean") return new Response(null, { status: 400 });
+    if (config.environment === "production" && body.live_mode === false) return new Response(null, { status: 200 });
     if (body.user_id !== undefined && String(body.user_id) !== config.collector) return new Response(null, { status: 200 });
     if (type === "subscription_preapproval") {
       stage = "subscription_lookup";
