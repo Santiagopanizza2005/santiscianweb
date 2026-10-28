@@ -37,3 +37,13 @@ test('oversized webhook bodies are rejected before JSON parsing',async()=>{
  assert.equal((await POST(req(query,{text:'x'.repeat(17000)},signedHeaders()))).status,413);
  assert.equal(calls,0);
 });
+test('provider failures request a retry and log only fixed diagnostic categories',async()=>{
+ const messages=[], previous=console.error;
+ console.error=(...args)=>messages.push(args);
+ global.fetch=async()=>({ok:false,status:401,json:async()=>({message:'private@customer.test secret-token'})});
+ try {
+  assert.equal((await POST(req(signedQuery,{type:'subscription_preapproval'},signedHeaders()))).status,500);
+  assert.deepEqual(messages,[['Mercado Pago webhook failed',{stage:'subscription_lookup',failure:'provider_401'}]]);
+  assert.equal(JSON.stringify(messages).includes('private@customer.test'),false);
+ } finally {console.error=previous;}
+});

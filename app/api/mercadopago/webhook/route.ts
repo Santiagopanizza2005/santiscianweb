@@ -1,5 +1,5 @@
 import { getSupabaseAdminClient } from "../../../../lib/supabase-admin";
-import { billingConfig, mpRequest, type Preapproval, type Invoice } from "../../../../lib/billing/mercadopago";
+import { billingConfig, MercadoPagoError, mpRequest, type Preapproval, type Invoice } from "../../../../lib/billing/mercadopago";
 import { verifySignature } from "../../../../lib/billing/model";
 import { syncInvoice, syncPreapproval } from "../../../../lib/billing/sync";
 
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
   // The payload is only a hint; all authoritative data is fetched from MP's API.
   const authorized = verifySignature(request.headers.get("x-signature"), request.headers.get("x-request-id"), queryId, signatureSecret);
   if (!authorized) return new Response(null, { status: 401 });
+  let stage = "request_body";
   try {
     if (Number(request.headers.get("content-length") ?? 0) > 16384) return new Response(null, { status: 413 });
     const raw = await readLimitedBody(request);
@@ -39,21 +40,44 @@ export async function POST(request: Request) {
     if (body.live_mode !== undefined && body.live_mode !== (config.environment === "production")) return new Response(null, { status: 200 });
     if (body.user_id !== undefined && String(body.user_id) !== config.collector) return new Response(null, { status: 200 });
     if (type === "subscription_preapproval") {
-      await syncPreapproval(await mpRequest<Preapproval>(`/preapproval/${queryId}`));
+      stage = "subscription_lookup";
+      const remote = await mpRequest<Preapproval>(`/preapproval/${queryId}`);
+      stage = "subscription_sync";
+      await syncPreapproval(remote);
     } else if (type === "subscription_authorized_payment") {
-      await syncInvoice(await mpRequest<Invoice>(`/authorized_payments/${queryId}`));
+      stage = "invoice_lookup";
+      const invoice = await mpRequest<Invoice>(`/authorized_payments/${queryId}`);
+      stage = "invoice_sync";
+      await syncInvoice(invoice);
     } else if (type === "payment") {
+      stage = "payment_lookup";
       const db = getSupabaseAdminClient();
       const { data, error } = await db.from("billing_payments").select("mp_invoice_id")
         .eq("environment", config.environment).eq("mp_payment_id", queryId).maybeSingle();
       if (error) throw new Error("Payment lookup failed");
-      if (data) await syncInvoice(await mpRequest<Invoice>(`/authorized_payments/${encodeURIComponent(data.mp_invoice_id)}`));
+      if (data) {
+        stage = "payment_sync";
+        await syncInvoice(await mpRequest<Invoice>(`/authorized_payments/${encodeURIComponent(data.mp_invoice_id)}`));
+      }
     }
     return new Response(null, { status: 200 });
   } catch (error) {
     if (error instanceof SyntaxError) return new Response(null, { status: 400 });
     if (error instanceof RangeError) return new Response(null, { status: 413 });
-    // No payloads, payer details or credentials in logs/responses; 5xx asks MP to retry.
+    // Fixed categories only: never log provider bodies, payer details or credentials.
+    const databaseFailures: Record<string, string> = {
+      "No se pudo consultar la suscripción.": "database_read",
+      "No se pudo guardar el estado de Mercado Pago. Actualizá la suscripción.": "database_write",
+      "No se pudo guardar el cobro.": "database_write",
+      "La suscripción no pertenece a esta cuenta.": "merchant_mismatch",
+      "Los datos de Mercado Pago no coinciden con la suscripción guardada.": "subscription_mismatch",
+    };
+    const failure = error instanceof MercadoPagoError ? `provider_${error.status}`
+      : error instanceof Error && databaseFailures[error.message] ? databaseFailures[error.message]
+      : error instanceof Error && error.name === "TimeoutError" ? "provider_timeout"
+      : error instanceof TypeError ? "network_or_type" : "internal";
+    console.error("Mercado Pago webhook failed", { stage, failure });
+    // 5xx asks Mercado Pago to retry delivery.
     return new Response(null, { status: 500 });
   }
 }
