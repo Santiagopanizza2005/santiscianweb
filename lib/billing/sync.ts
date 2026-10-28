@@ -20,7 +20,7 @@ export async function syncPreapproval(remote: Preapproval) {
   }
   const { error: writeError } = await db.from("billing_subscriptions").update({
     mp_id: remote.id, status: remote.status, checkout_url: checkoutUrl(remote.init_point),
-    next_payment_at: remote.next_payment_date ?? null, last_synced_at: new Date().toISOString(),
+    next_payment_at: remote.status === "cancelled" ? null : remote.next_payment_date ?? null, last_synced_at: new Date().toISOString(),
   }).eq("id", row.id).eq("environment", config.environment);
   if (writeError) throw new Error("No se pudo guardar el estado de Mercado Pago. Actualizá la suscripción.");
   return true;
