@@ -2,6 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 export type BillingSubscription = {
   id: string; client_name: string; company: string; email: string; service: string;
+  payer_email?: string | null; invitation_created_at?: string | null; invitation_sent_at?: string | null; invitation_email_id?: string | null;
   notes: string; amount: number; environment: "test" | "production"; status: string;
   mp_id: string | null; checkout_url: string | null; next_payment_at: string | null;
   last_synced_at: string | null; created_at: string;

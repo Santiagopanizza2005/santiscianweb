@@ -54,7 +54,7 @@ export async function refreshSubscription(id: string) {
   const db = getSupabaseAdminClient();
   const config = billingConfig();
   if (!config) throw new Error("Falta activar Mercado Pago.");
-  const { data: row, error } = await db.from("billing_subscriptions").select("id,mp_id,environment,status,email").eq("id", id).eq("environment", config.environment).single();
+  const { data: row, error } = await db.from("billing_subscriptions").select("id,mp_id,environment,status,email,payer_email").eq("id", id).eq("environment", config.environment).single();
   if (error || !row) throw new Error("No se encontró la suscripción en este entorno.");
   let mpId = row.mp_id;
   if (!mpId) {
@@ -63,7 +63,7 @@ export async function refreshSubscription(id: string) {
     const matches: Preapproval[] = [];
     let complete = false;
     for (let offset = 0; offset < 1000; offset += 100) {
-      const found = await mpRequest<{ results: Preapproval[]; paging?: { total: number } }>(`/preapproval/search?payer_email=${encodeURIComponent(row.email)}&limit=100&offset=${offset}`);
+      const found = await mpRequest<{ results: Preapproval[]; paging?: { total: number } }>(`/preapproval/search?payer_email=${encodeURIComponent(row.payer_email ?? row.email)}&limit=100&offset=${offset}`);
       matches.push(...(found.results ?? []).filter(item => String(item.external_reference) === id && String(item.collector_id) === config.collector));
       if ((found.results?.length ?? 0) < 100 || offset + 100 >= (found.paging?.total ?? Infinity)) { complete = true; break; }
     }
