@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "Santi Scian",
   },
   title: "Santi Scian",
-  description: "Software para resolver problemas de negocio.",
+  description: "Apps and tools by Santi Scian.",
 };
 
 export const viewport: Viewport = {
@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
