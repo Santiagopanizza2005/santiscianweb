@@ -29,7 +29,7 @@ export default function Page() {
           <div className={styles.paper} aria-hidden="true" />
           <span className={styles.pin} aria-hidden="true" />
           <div className={`${styles.noteContent} ${styles.appContent}`}>
-            <Image className={styles.appIcon} src="/ChatGPT Image Jul 28, 2026, 10_26_25 AM 1 (1).png" alt="" width={104} height={104} unoptimized />
+            <Image className={styles.appIcon} src="/onesec-icon.png" alt="" width={104} height={104} unoptimized />
             <h2 className={styles.appName}>OneSec</h2>
             <p className={styles.appDescription}>Blocks selected apps for a time you choose after you dismiss your alarm.</p>
             <Image className={styles.storeBadge} src="/app-store-badge.svg" alt="Download on the App Store" width={120} height={40} unoptimized />
