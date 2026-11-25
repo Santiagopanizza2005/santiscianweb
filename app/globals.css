@@ -729,7 +729,44 @@ body:has(.blank-project-page) {
 }
 
 .home-page .intro::before {
-  background: linear-gradient(180deg, #02040c 0%, #030923 32%, #061b63 62%, #0752bb 76%, #65acf0 86%, #c7e9fb 93%, #fff 98%, #fff 100%);
+  /* Degradado con curva suave (calculado en OKLab) para evitar saltos de color. */
+  background: linear-gradient(
+    180deg,
+    #05070d 0.0%,
+    #05080f 3.0%,
+    #050810 6.0%,
+    #050812 9.0%,
+    #050913 12.0%,
+    #060914 15.0%,
+    #060916 18.0%,
+    #060a18 21.0%,
+    #060b1a 24.0%,
+    #070c1e 27.0%,
+    #080e22 30.0%,
+    #091027 33.0%,
+    #0a122d 36.0%,
+    #0a1434 39.0%,
+    #0b173c 42.0%,
+    #0d1b45 45.0%,
+    #0f204f 48.0%,
+    #12265b 51.0%,
+    #162d69 54.0%,
+    #1b377a 57.0%,
+    #21428e 60.0%,
+    #294fa3 63.0%,
+    #345db8 66.0%,
+    #426eca 69.0%,
+    #5781d7 72.0%,
+    #6f97e1 75.0%,
+    #89ace9 78.0%,
+    #a2bff0 81.0%,
+    #bbd1f6 84.0%,
+    #d3e2fa 87.0%,
+    #e8f0fd 90.0%,
+    #f8fbff 93.0%,
+    #ffffff 96.0%,
+    #fff 100%
+  );
   content: "";
   inset: 0;
   pointer-events: none;
@@ -737,18 +774,19 @@ body:has(.blank-project-page) {
   z-index: -1;
 }
 
+/* Grano muy sutil que disimula el banding en pantallas de 8 bits. */
 .home-page .intro::after {
-  background-image: url("/hero-stars.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   content: "";
   inset: 0;
-  mask-image: linear-gradient(#000 0%, #000 70%, transparent 96%);
+  mask-image: linear-gradient(#000 0%, #000 75%, transparent 92%);
+  mix-blend-mode: overlay;
+  opacity: 0.07;
   pointer-events: none;
   position: absolute;
   z-index: -1;
 }
+
 
 .home-page .site-header {
   background: linear-gradient(135deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.06));
@@ -781,79 +819,6 @@ body:has(.blank-project-page) {
   line-height: 0.9;
   margin: 0 0 1.8rem;
   max-width: none;
-}
-
-.loom-tag {
-  align-items: center;
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.19), rgb(255 255 255 / 0.05) 55%, rgb(115 183 255 / 0.13));
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgb(255 255 255 / 0.28);
-  border-radius: 999px;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.32), inset 0 -1px 0 rgb(255 255 255 / 0.06), 0 8px 28px rgb(0 0 0 / 0.2);
-  color: #fff;
-  display: inline-flex;
-  flex-shrink: 0;
-  gap: 0.75rem;
-  position: absolute;
-  bottom: calc(100% + clamp(2.5rem, 5vh, 4rem));
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  padding: 0.4rem 0.4rem 0.4rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.4;
-  text-decoration: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease;
-}
-
-.loom-tag:hover {
-  border-color: rgb(255 255 255 / 0.55);
-}
-
-.loom-tag__arrow {
-  align-items: center;
-  background: linear-gradient(145deg, #339fff, #0071e3);
-  border: 1px solid rgb(255 255 255 / 0.25);
-  border-radius: 50%;
-  box-shadow: inset 0 1px 1px rgb(255 255 255 / 0.3), 0 2px 10px rgb(0 113 227 / 0.35);
-  display: inline-flex;
-  flex-shrink: 0;
-  height: 2rem;
-  justify-content: center;
-  width: 2rem;
-}
-
-.loom-tag:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 5px;
-}
-
-@media (max-width: 768px) {
-  .loom-tag {
-    bottom: calc(100% + 2.5rem);
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) 1.85rem;
-    width: max-content;
-    max-width: calc(100vw - 3rem);
-    min-height: 2.75rem;
-    gap: 0.55rem;
-    padding: 0.35rem 0.35rem 0.35rem 0.75rem;
-    font-size: clamp(0.75rem, 3.2vw, 0.875rem);
-  }
-
-  .loom-tag > img {
-    flex-shrink: 0;
-    width: 1.35rem;
-    height: auto;
-  }
-
-  .loom-tag__arrow {
-    width: 1.85rem;
-    height: 1.85rem;
-    justify-self: end;
-  }
 }
 
 .figma-frame {
@@ -1191,22 +1156,9 @@ body:has(.blank-project-page) {
 }
 
 .intro h1 span {
+  color: #fff;
   display: block;
   white-space: nowrap;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-
-.intro h1 span:first-child {
-  background-image: linear-gradient(90deg, #fff 0%, #fff 12%, #bbd9ff 30%, #7aacf0 50%, #bbd9ff 70%, #fff 88%, #fff 100%);
-  color: transparent;
-}
-
-.intro h1 span:last-child {
-  background-image: linear-gradient(110deg, #c6dfff 0%, #95bff5 42%, #6498e8 100%);
-  color: transparent;
-  margin: -0.12em -0.04em;
-  padding: 0.12em 0.04em;
 }
 
 .intro p {
@@ -1665,7 +1617,20 @@ body:has(.blank-project-page) {
 .site-header .back-link {
   text-align: center;
   white-space: nowrap;
-  width: 5.5rem;
+  min-width: 5.5rem;
+}
+
+.language-button {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.language-button__icon {
+  flex-shrink: 0;
+  height: 1.05em;
+  width: 1.05em;
 }
 
 .site-header > .back-link { margin-right: auto; }
